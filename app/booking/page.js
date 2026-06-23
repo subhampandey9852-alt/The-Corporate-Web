@@ -101,6 +101,7 @@ const BUDGET_ROOMS = [
 ];
 
 function BookingPage() {
+  const [isMounted, setIsMounted] = useState(false);
   const [roomsList, setRoomsList] = useState(BUDGET_ROOMS);
   const [selectedRoomId, setSelectedRoomId] = useState("executive-double");
   const [guestName, setGuestName] = useState("");
@@ -121,6 +122,7 @@ function BookingPage() {
 
   // Fetch rooms & existing bookings on mount
   React.useEffect(() => {
+    setIsMounted(true);
     fetch("/api/rooms")
       .then((res) => res.json())
       .then((data) => {
@@ -242,7 +244,7 @@ function BookingPage() {
   };
 
   return (
-    <div className="text-black min-h-screen font-sans py-16 px-6 md:px-12 max-w-[90rem] mx-auto space-y-16 selection:bg-brand-green selection:text-white ">
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-sans py-16 px-6 md:px-12 max-w-[90rem] mx-auto space-y-16 selection:bg-brand-green selection:text-white `}>
 
       {/* Header */}
       <section className="text-center max-w-4xl mx-auto space-y-5 pt-8">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Mail,
   Phone,
@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 function Contact() {
+  const [isMounted, setIsMounted] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -23,6 +24,10 @@ function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +57,7 @@ function Contact() {
   };
 
   return (
-    <div className="text-black min-h-screen font-sans py-16 px-6 md:px-12 max-w-[90rem] mx-auto space-y-16 selection:bg-brand-green selection:text-white ">
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-sans py-16 px-6 md:px-12 max-w-[90rem] mx-auto space-y-16 selection:bg-brand-green selection:text-white `}>
 
       {/* Page Header */}
       <section className="text-center max-w-4xl mx-auto space-y-5 pt-8">
@@ -71,37 +76,37 @@ function Contact() {
 
       {/* Trust & Satisfaction Banner */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="p-6 bg-white border border-[#E5E2DA] rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-gradient-to-br hover:from-white hover:to-brand-cream-dark -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
+        <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
           <div className="w-12 h-12 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm">
             <Clock className="w-6 h-6" />
           </div>
           <div className="space-y-1">
-            <h4 className="text-base font-bold text-stone-700 group-hover:text-brand-gold-dark transition-colors duration-300">24/7 Service Desk</h4>
-            <p className="text-xs text-stone-950 font-medium leading-relaxed">
+            <h4 className="text-base font-bold text-white group-hover:text-brand-gold transition-colors duration-300">24/7 Service Desk</h4>
+            <p className="text-xs text-white/80 font-medium leading-relaxed">
               Day or night, our team of guest experience planners is always ready to accommodate your needs.
             </p>
           </div>
         </div>
 
-        <div className="p-6 bg-white border border-[#E5E2DA] rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-gradient-to-br hover:from-white hover:to-brand-cream-dark -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
+        <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
           <div className="w-12 h-12 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm">
             <ThumbsUp className="w-6 h-6" />
           </div>
           <div className="space-y-1">
-            <h4 className="text-base font-bold text-stone-700 group-hover:text-brand-gold-dark transition-colors duration-300">100% Satisfaction</h4>
-            <p className="text-xs text-stone-950 font-medium leading-relaxed">
+            <h4 className="text-base font-bold text-white group-hover:text-brand-gold transition-colors duration-300">100% Satisfaction</h4>
+            <p className="text-xs text-white/80 font-medium leading-relaxed">
               We guarantee pristine coastal rooms. If you are unsatisfied, we make it right instantly.
             </p>
           </div>
         </div>
 
-        <div className="p-6 bg-white border border-[#E5E2DA] rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-gradient-to-br hover:from-white hover:to-brand-cream-dark -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
+        <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
           <div className="w-12 h-12 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm">
             <ShieldCheck className="w-6 h-6" />
           </div>
           <div className="space-y-1">
-            <h4 className="text-base font-bold text-stone-700 group-hover:text-brand-gold-dark transition-colors duration-300">Secured Bookings</h4>
-            <p className="text-xs text-stone-950 font-medium leading-relaxed">
+            <h4 className="text-base font-bold text-white group-hover:text-brand-gold transition-colors duration-300">Secured Bookings</h4>
+            <p className="text-xs text-white/80 font-medium leading-relaxed">
               All transactions and reservation logs are fully encrypted. Your guest and credit data is safe with us.
             </p>
           </div>

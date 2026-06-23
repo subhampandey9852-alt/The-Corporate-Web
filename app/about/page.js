@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Sparkles,
   MapPin,
@@ -15,8 +15,12 @@ import {
 } from "lucide-react";
 
 function About() {
-  // Original Todo Logic styled and rebranded as Guest Requests
+  const [isMounted, setIsMounted] = useState(false);
   const [requestInput, setRequestInput] = useState("");
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   const [requestList, setRequestList] = useState([
     "Order private terrace champagne service",
     "Book sunset cruise with Yacht Charter",
@@ -52,7 +56,7 @@ function About() {
   }
 
   return (
-    <div className="text-black min-h-screen font-sans py-12 px-6 md:px-8 max-w-7xl mx-auto space-y-20 selection:bg-brand-green selection:text-white ">
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-sans py-12 px-6 md:px-8 max-w-7xl mx-auto space-y-20 selection:bg-brand-green selection:text-white `}>
 
       {/* Heritage Narrative Header */}
       <section className="text-center max-w-3xl mx-auto space-y-4 pt-8">
@@ -110,15 +114,15 @@ function About() {
       </section>
 
       {/* Redesigned Stay Request / Activity Planner (Todo App) */}
-      <section className="bg-white/80 backdrop-blur-md border border-[#E5E2DA] rounded-xl p-8 max-w-2xl mx-auto shadow-lg shadow-stone-200/50 space-y-6 hover:border-brand-radishblack hover:-translate-y-1 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)]">
+      <section className="bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-xl p-8 max-w-2xl mx-auto shadow-2xl space-y-6 hover:border-slate-700 hover:-translate-y-1 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-full bg-brand-gold/10 text-brand-gold-dark flex items-center justify-center mx-auto mb-2">
+          <div className="w-12 h-12 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-2 border border-amber-500/25">
             <ListTodo className="w-6 h-6" />
           </div>
-          <h3 className="text-xl md:text-2xl font-serif font-light text-[#1C2A22]">
+          <h3 className="text-xl md:text-2xl font-serif font-light text-white">
             Guest Stay Request Planner
           </h3>
-          <p className="text-[#1C2A22] text-xs font-bold max-w-sm mx-auto">
+          <p className="text-slate-400 text-xs font-light max-w-sm mx-auto">
             Design your ideal holiday itinerary. Add requests or booking needs below, and our concierges will curate them instantly.
           </p>
         </div>
@@ -131,11 +135,11 @@ function About() {
             onChange={(e) => setRequestInput(e.target.value)}
             placeholder="e.g., Book sunset cruise at 5:00 PM"
             onKeyDown={(e) => e.key === "Enter" && handleAddRequest()}
-            className="flex-grow bg-stone-50 border border-[#E5E2DA] rounded-lg px-4 py-2.5 text-xs text-stone-700 focus:outline-none focus:border-brand-green transition-colors"
+            className="flex-grow bg-slate-950/80 border border-slate-800 rounded-lg px-4 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400 transition-colors placeholder:text-slate-650"
           />
           <button
             onClick={handleAddRequest}
-            className="px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-white bg-brand-green hover:bg-brand-green-hover transition-colors whitespace-nowrap shadow-md"
+            className="px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-950 bg-amber-500 hover:bg-amber-600 transition-colors whitespace-nowrap shadow-md"
           >
             Add Request
           </button>
@@ -144,31 +148,31 @@ function About() {
         {/* Request List Display */}
         <div className="space-y-3">
           {requestList.length === 0 ? (
-            <p className="text-center text-stone-400 text-xs py-8">Your request list is empty. Add item above to start planning.</p>
+            <p className="text-center text-slate-500 text-xs py-8">Your request list is empty. Add item above to start planning.</p>
           ) : (
             requestList.map((req, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-4 bg-stone-50/50 border border-[#E5E2DA] rounded-lg group hover:border-brand-radishblack hover:bg-white hover:-translate-y-0.5 transition-all duration-500 hover:shadow-md"
+                className="flex items-center justify-between p-4 bg-slate-950/40 border border-slate-800/80 rounded-lg group hover:border-slate-700 hover:bg-slate-900/60 hover:-translate-y-0.5 transition-all duration-500 hover:shadow-md"
               >
                 <div className="flex items-center gap-3">
-                  <span className="w-5 h-5 rounded-full bg-brand-gold/10 text-brand-gold-dark flex items-center justify-center text-[10px] font-bold">
+                  <span className="w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center text-[10px] font-bold">
                     {idx + 1}
                   </span>
-                  <span className="text-stone-700 text-xs font-light">{req}</span>
+                  <span className="text-slate-200 text-xs font-light">{req}</span>
                 </div>
 
                 <div className="flex gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={() => handleEditRequest(idx)}
-                    className="p-2 rounded-lg bg-white hover:bg-stone-100 text-brand-green border border-stone-200 transition-colors"
+                    className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-800 transition-colors"
                     title="Edit Request"
                   >
                     <Edit3 className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={() => handleDeleteRequest(idx)}
-                    className="p-2 rounded-lg bg-white hover:bg-stone-100 text-rose-600 border border-stone-200 transition-colors"
+                    className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-rose-400 border border-slate-800 transition-colors"
                     title="Remove Request"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -185,28 +189,28 @@ function About() {
         <div className="fixed inset-0 z-50 flex items-center justify-center font-sans">
           <div
             onClick={() => setShowEditModal(false)}
-            className="absolute inset-0 bg-stone-900/40 backdrop-blur-xs"
+            className="absolute inset-0 bg-slate-950/80 backdrop-blur-xs"
           ></div>
-          <div className="relative z-10 bg-white border border-[#E5E2DA] p-6 rounded-xl w-full max-w-md shadow-lg space-y-4 mx-4">
-            <h4 className="text-base font-serif font-bold text-[#1C2A22] uppercase tracking-wide">
+          <div className="relative z-10 bg-slate-900 border border-slate-800 p-6 rounded-xl w-full max-w-md shadow-2xl space-y-4 mx-4">
+            <h4 className="text-base font-serif font-bold text-white uppercase tracking-wide">
               Edit Request Details
             </h4>
             <input
               type="text"
               value={editValue}
               onChange={(e) => setEditValue(e.target.value)}
-              className="w-full bg-stone-50 border border-[#E5E2DA] rounded-lg px-4 py-2.5 text-xs text-stone-700 focus:outline-none focus:border-brand-green"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
             />
             <div className="flex justify-end gap-2 pt-2">
               <button
                 onClick={() => setShowEditModal(false)}
-                className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-stone-400 hover:text-stone-600 transition-colors"
+                className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleUpdateRequest}
-                className="px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-white bg-brand-green hover:bg-brand-green-hover transition-colors"
+                className="px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-950 bg-amber-500 hover:bg-amber-600 transition-colors"
               >
                 Save Changes
               </button>

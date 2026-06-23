@@ -36,6 +36,7 @@ export default function AdminDashboard() {
   const [queries, setQueries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   // Forms states
   const [showRoomModal, setShowRoomModal] = useState(false);
@@ -56,6 +57,7 @@ export default function AdminDashboard() {
   const [hasHover, setHasHover] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     fetchData();
     document.body.style.backgroundColor = "#020617";
     setHasHover(window.matchMedia("(hover: hover)").matches);
@@ -306,7 +308,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="text-slate-100 min-h-screen bg-slate-950 font-sans pb-20 relative overflow-x-hidden">
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-slate-100 min-h-screen bg-slate-950 font-sans pb-20 relative overflow-x-hidden`}>
 
       {/* Background Glow Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

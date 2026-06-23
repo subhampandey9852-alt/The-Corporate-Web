@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React, { use, useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Sparkles, Calendar, BookOpen, Clock } from "lucide-react";
 
@@ -51,6 +51,12 @@ const ARTICLE_DETAILS = {
 };
 
 function BlogPart({ params }) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Unwrap params using React.use()
   const resolvedParams = use(params);
   const { slug } = resolvedParams;
@@ -69,7 +75,7 @@ function BlogPart({ params }) {
   }
 
   return (
-    <div className="text-white min-h-screen font-sans py-12 px-4 md:px-8 max-w-4xl mx-auto space-y-8 selection:bg-amber-400 selection:text-zinc-950">
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-white min-h-screen font-sans py-12 px-4 md:px-8 max-w-4xl mx-auto space-y-8 selection:bg-amber-400 selection:text-zinc-950`}>
       
       {/* Back Button */}
       <Link 

@@ -189,6 +189,16 @@ const FOOD_ITEMS = [
   }
 ];
 
+// Gallery Images Data
+const GALLERY_IMAGES = [
+  { src: "/photos/img19.jpg", title: "Luxury Penthouse Suite", desc: "Crafted by contemporary local designers for maximum comfort." },
+  { src: "/photos/img34.jpg", title: "Boutique Lobby & Lounge", desc: "Classical gold-themed art, styling, and premium finishes." },
+  { src: "/photos/img22.jpg", title: "Modern Exterior View", desc: "Stunning contemporary architecture and spacious private balconies." },
+  { src: "/photos/img31.jpg", title: "Marble Reception Desk", desc: "Elegant reception lobby with signature premium black marble counters." },
+  { src: "/photos/img25.jpg", title: "Ensuite Bathroom", desc: "Modern geometric tile designs with premium bathroom fixtures." },
+  { src: "/photos/img7.jpg", title: "Deluxe Sitting Area", desc: "Relaxing layouts designed for business and corporate travelers." },
+];
+
 export default function HotelUI() {
   // Navigation & Category states
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -198,6 +208,7 @@ export default function HotelUI() {
   const [currentImage, setCurrentImage] = useState(0);
   const router = useRouter();
   const [showGallery, setShowGallery] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [searchParams, setSearchParams] = useState({
     checkIn: "2026-06-20",
     checkOut: "2026-06-25",
@@ -207,6 +218,7 @@ export default function HotelUI() {
 
   // Fetch rooms from API
   React.useEffect(() => {
+    setIsMounted(true);
     fetch("/api/rooms")
       .then((res) => res.json())
       .then((data) => {
@@ -332,7 +344,7 @@ export default function HotelUI() {
 
   return (
     <main>
-      <div className="text-black min-h-screen font-italic selection:bg-brand-green selection:text-white bg-[#A52A2A] ">
+      <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-italic selection:bg-brand-green selection:text-white bg-[#A52A2A] `}>
 
         {/* HERO SECTION */}
         <section className="relative min-h-[90vh] md:h-[calc(100vh-4rem)] flex flex-col md:flex-row items-stretch overflow-hidden border-b border-[#E5E2DA]">
@@ -348,7 +360,7 @@ export default function HotelUI() {
                 moments <span className="font-script text-brand-gold font-semibold text-4xl sm:text-5xl lg:text-6xl inline-block mx-1">Rich</span> <br />
                 in emotions
               </h1>
-              <p className="text-black text-3xl tracking-wide mt-6 font-script">
+              <p className="text-black text-4xl tracking-wide mt-6 font-script">
                 Book now and get the best prices at The Corporate House
               </p>
             </div>
@@ -521,38 +533,30 @@ export default function HotelUI() {
 
           {/* 3D Scroll Showcase Wrap for the dining image gallery */}
           <ContainerScroll
-
+            titleComponent={
+              <div className="mb-6">
+                <span className="text-sm uppercase tracking-[0.25em] text-[#FFC72C] font-semibold">Exquisite Collection</span>
+                <h3 className="text-3xl md:text-5xl font-serif text-white mt-2">Resort Artistry & Spaces</h3>
+              </div>
+            }
           >
-            <div className="w-full h-full relative group/slider">
-              <style>{`
-              @keyframes imageReveal {
-                0% {
-                  opacity: 0;
-                  transform: scale(1.1);
-                }
-                100% {
-                  opacity: 1;
-                  transform: scale(1);
-                }
-              }
-              .animate-image-reveal {
-                animation: imageReveal 0.8s ease-out;
-              }
-            `}</style>
-              <img
-                key={currentImage}
-                src={roomsList[currentImage]?.image || "/photos/img31.jpg"}
-                alt={roomsList[currentImage]?.name || "Corporate Dining Deck"}
-                className="w-full h-full object-cover animate-image-reveal"
-              />
-              <button className="absolute top-1/2 left-6 -translate-y-1/2 w-12 h-12 bg-white/70 backdrop-blur-md hover:bg-white text-stone-900 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 group/btn border border-white/40 z-20"
-                onClick={handleLeft}>
-                <ChevronLeft className="w-5 h-5 transition-transform group-hover/btn:-translate-x-0.5" />
-              </button>
-              <button className="absolute top-1/2 right-6 -translate-y-1/2 w-12 h-12 bg-white/70 backdrop-blur-md hover:bg-white text-stone-900 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 group/btn border border-white/40 z-20"
-                onClick={handleRight}>
-                <ChevronRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-0.5" />
-              </button>
+            <div className="w-full h-full bg-[#1A0D10]/20 p-4 md:p-6 overflow-y-auto grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              {GALLERY_IMAGES.map((img, idx) => (
+                <div 
+                  key={idx} 
+                  className="group relative overflow-hidden rounded-2xl aspect-video md:aspect-auto md:h-44 cursor-pointer border border-[#E5E2DA]/15 shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
+                >
+                  <img 
+                    src={img.src} 
+                    alt={img.title} 
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h4 className="text-[#FFC72C] text-[10px] md:text-xs font-serif font-bold tracking-wide uppercase">{img.title}</h4>
+                    <p className="text-white/85 text-[8px] md:text-[10px] font-sans font-light mt-1 leading-relaxed">{img.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </ContainerScroll>
         </section>

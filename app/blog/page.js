@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Sparkles, Calendar, BookOpen, Star } from "lucide-react";
 
@@ -34,8 +36,13 @@ const BLOG_POSTS = [
 ];
 
 function Blog() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   return (
-    <div className="text-black min-h-screen font-sans py-12 px-6 md:px-8 max-w-7xl mx-auto space-y-16 selection:bg-brand-green selection:text-white bg-[#800000]">
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-sans py-12 px-6 md:px-8 max-w-7xl mx-auto space-y-16 selection:bg-brand-green selection:text-white bg-[#A52A2A]`}>
       
       {/* Header */}
       <section className="text-center max-w-3xl mx-auto space-y-4 pt-8">
@@ -66,7 +73,7 @@ function Blog() {
                 alt={post.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
               />
-              <span className="absolute top-4 left-4 text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-[#800000]/90 backdrop-blur-md text-brand-green border border-brand-green/10">
+              <span className="absolute top-4 left-4 text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-[#A52A2A]/90 backdrop-blur-md text-brand-green border border-brand-green/10">
                 {post.category}
               </span>
             </div>

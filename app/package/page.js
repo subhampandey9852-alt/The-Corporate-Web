@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Sparkles,
   Check,
@@ -164,8 +164,13 @@ const PACKAGES = [
 ];
 
 function PackagePage() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   return (
-    <div className="text-black min-h-screen font-sans py-12 px-6 md:px-8 max-w-7xl mx-auto space-y-16 selection:bg-brand-green selection:text-white ">
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-sans py-12 px-6 md:px-8 max-w-7xl mx-auto space-y-16 selection:bg-brand-green selection:text-white `}>
 
       {/* Page Header */}
       <section className="text-center max-w-3xl mx-auto space-y-4 pt-8">
