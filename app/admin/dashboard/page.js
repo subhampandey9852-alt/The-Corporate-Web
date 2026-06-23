@@ -788,6 +788,11 @@ export default function AdminDashboard() {
                               <td className="py-6 px-6">
                                 <span className="block font-bold text-white text-base">{booking.guestName}</span>
                                 <span className="block text-xs text-slate-400 font-mono mt-1">{booking.phone || "N/A"}</span>
+                                {booking.createdAt && (
+                                  <span className="block text-[11px] text-slate-500 font-mono mt-1">
+                                    Booked on: {new Date(booking.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                                  </span>
+                                )}
                               </td>
                               <td className="py-6 px-6">
                                 <span className="font-serif font-medium text-amber-400 text-base block">{booking.roomName}</span>
