@@ -75,7 +75,7 @@ function Contact() {
       </section>
 
       {/* Trust & Satisfaction Banner */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
           <div className="w-12 h-12 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm">
             <Clock className="w-6 h-6" />

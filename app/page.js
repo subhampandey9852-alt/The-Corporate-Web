@@ -652,7 +652,7 @@ export default function HotelUI() {
               <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent mx-auto mt-4"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {AMENITIES.map((amenity, idx) => {
                 const Icon = amenity.icon;
                 return (
@@ -687,7 +687,7 @@ export default function HotelUI() {
               <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent mx-auto mt-4"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {FOOD_ITEMS.map((item) => (
                 <div
                   key={item.id}
