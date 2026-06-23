@@ -18,10 +18,19 @@ async function verifyAdmin() {
   }
 }
 
-export async function GET() {
+export async function GET(req) {
   try {
+    const { searchParams } = new URL(req.url);
+    const phone = searchParams.get("phone");
+
     const isAdmin = await verifyAdmin();
     const bookings = await getBookings();
+    
+    if (phone) {
+      // Return full bookings detail for the user matching their phone number
+      const userBookings = bookings.filter(b => b.phone === phone);
+      return NextResponse.json({ success: true, bookings: userBookings });
+    }
     
     if (!isAdmin) {
       // Exclude customer sensitive data for availability check

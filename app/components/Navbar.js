@@ -32,8 +32,8 @@ function Navbar() {
     { name: "Home", href: "/" },
     { name: "Our Story", href: "/about" },
     { name: "Packages", href: "/package" },
+    { name: "My Bookings", href: "/my-bookings" },
     { name: "Contact", href: "/contact" },
-    // { name: "Admin", href: "/admin/login" },
   ];
 
   return (
