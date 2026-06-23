@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  --foreground: #222522;
+}
+
+@theme inline {
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-script: var(--font-script), cursive;
+  
+  --color-brand-green: #2A4E3F;
+  --color-brand-green-hover: #1F3A2E;
+  --color-brand-cream: #F9F6F0;
+  --color-brand-cream-dark: #EFECE6;
+  --color-brand-charcoal: #1C2A22;
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-color: var(--color-brand-cream);
+}
