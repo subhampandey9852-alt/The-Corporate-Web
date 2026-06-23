@@ -344,7 +344,7 @@ export default function HotelUI() {
 
   return (
     <main>
-      <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-italic selection:bg-brand-green selection:text-white bg-[#A52A2A] `}>
+      <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-italic selection:bg-brand-green selection:text-white bg-brand-cream `}>
 
         {/* HERO SECTION */}
         <section className="relative min-h-[90vh] md:h-[calc(100vh-4rem)] flex flex-col md:flex-row items-stretch overflow-hidden border-b border-[#E5E2DA]">
@@ -415,7 +415,7 @@ export default function HotelUI() {
           </div>
 
           {/* Right Column: Hero Image as a Card */}
-          <div className="w-full md:w-[55%] flex items-center justify-center p-4 md:p-6 lg:p-8 bg-card-gradient">
+          <div className="w-full md:w-[55%] flex items-center justify-center p-4 md:p-6 lg:p-8 bg-[E6D09F]">
             <div className="w-full max-w-2xl h-[500px] md:h-[600px] relative rounded-2xl overflow-hidden border border-[#E5E2DA] shadow-2xl group"
               onMouseEnter={() => setShowGallery(true)}
               onMouseLeave={() => setShowGallery(false)}
@@ -542,14 +542,14 @@ export default function HotelUI() {
           >
             <div className="w-full h-full bg-[#1A0D10]/20 p-4 md:p-6 overflow-y-auto grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {GALLERY_IMAGES.map((img, idx) => (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   className="group relative overflow-hidden rounded-2xl aspect-video md:aspect-auto md:h-44 cursor-pointer border border-[#E5E2DA]/15 shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
                 >
-                  <img 
-                    src={img.src} 
-                    alt={img.title} 
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out" 
+                  <img
+                    src={img.src}
+                    alt={img.title}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                     <h4 className="text-[#FFC72C] text-[10px] md:text-xs font-serif font-bold tracking-wide uppercase">{img.title}</h4>

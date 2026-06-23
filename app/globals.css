@@ -9,11 +9,11 @@
   --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
   --font-serif: var(--font-serif), Georgia, serif;
   --font-script: var(--font-script), cursive;
-  
+
   --color-brand-green: #2A4E3F;
   --color-brand-green-hover: #1F3A2E;
-  --color-brand-cream: #F9F6F0;
-  --color-brand-cream-dark: #EFECE6;
+  --color-brand-cream: E6D09F;
+  --color-brand-cream-dark: #A5AAB9;
   --color-brand-charcoal: #1C2A22;
   --color-brand-radishblack: #1A0D10;
   --color-brand-gold: #C5A880;
@@ -23,7 +23,7 @@
 body {
   color: var(--foreground);
   font-family: var(--font-sans);
-  background-color: #A52A2A;
+  background-color: #afb5c7;
 }
 
 /* Custom Premium Utilities */
@@ -57,12 +57,10 @@ body {
   left: -150%;
   width: 60%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.35) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: skewX(-25deg);
   pointer-events: none;
   z-index: 30;
@@ -88,7 +86,7 @@ body {
 }
 
 .color-brand-cream {
-  background-color: #A52A2A;
+  background-color: E6DO9F;
 }
 
 /* Glow Blobs */
@@ -119,12 +117,10 @@ button::after,
   left: -150%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: skewX(-20deg);
   pointer-events: none;
   z-index: 10;
@@ -142,6 +138,7 @@ button:hover::after,
   0% {
     left: -150%;
   }
+
   100% {
     left: 150%;
   }
@@ -156,4 +153,3 @@ button:hover::after,
 .mounted-shine .group::after {
   animation: sweepShine 1.1s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
