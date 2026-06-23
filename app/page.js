@@ -360,7 +360,7 @@ export default function HotelUI() {
                 moments <span className="font-script text-brand-gold font-semibold text-4xl sm:text-5xl lg:text-6xl inline-block mx-1">Rich</span> <br />
                 in emotions
               </h1>
-              <p className="text-black text-4xl tracking-wide mt-6 font-script">
+              <p className="text-black text-2xl sm:text-3xl md:text-4xl tracking-wide mt-6 font-script">
                 Book now and get the best prices at The Corporate House
               </p>
             </div>
@@ -518,14 +518,14 @@ export default function HotelUI() {
 
         {/* INTRODUCTION SECTION */}
         <section className="py-16 md:py-24 px-6 sm:px-12 lg:px-16 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start mb-12 md:mb-20">
             <div>
               <h2 className="text-3xl sm:text-4xl font-serif font-light text-black leading-tight max-w-md">
                 Here, local talents come together.
               </h2>
             </div>
             <div>
-              <p className="text-black text-4xl font-script leading-relaxed mt-2 md:mt-0 max-w-lg">
+              <p className="text-black text-xl sm:text-2xl md:text-4xl font-script leading-relaxed mt-2 md:mt-0 max-w-lg">
                 We let ourselves be inspired by the rich history as well as by contemporary artists of the city. For in the 21st century the city has so much more to offer than just medieval heritage.
               </p>
             </div>
