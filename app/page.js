@@ -404,7 +404,17 @@ export default function HotelUI() {
       <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-italic selection:bg-brand-green selection:text-white bg-[#E8F2F7] `}>
 
         {/* HERO SECTION */}
-        <section className="relative min-h-[90vh] md:h-[calc(100vh-4rem)] flex flex-col md:flex-row items-stretch overflow-hidden border-b border-[#E5E2DA]">
+        <section className="relative min-h-[90vh] md:h-[calc(100vh-4rem)] flex flex-col md:flex-row items-stretch overflow-hidden border-b border-[#E5E2DA] bg-stone-900">
+
+          {/* Immersive Background Image with Readability Overlay */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/hotel_background.png"
+              alt="Luxury Hotel View"
+              className="w-full h-full object-cover opacity-85"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30 md:to-transparent"></div>
+          </div>
 
           {/* Left Column: Text Content & Floating Form */}
           <div className="w-full md:w-[45%] bg-transparent px-6 py-12 md:py-0 sm:px-12 lg:px-16 flex flex-col justify-center relative z-10">
@@ -412,18 +422,18 @@ export default function HotelUI() {
               <span className="font-script text-brand-gold-dark text-4xl md:text-5xl block mb-2 font-semibold">
                 Memorable
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-black leading-[1.15] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-white leading-[1.15] tracking-tight">
                 Hotels for <br />
                 moments <span className="font-script text-brand-gold font-semibold text-4xl sm:text-5xl lg:text-6xl inline-block mx-1">Rich</span> <br />
                 in emotions
               </h1>
-              <p className="text-black text-2xl sm:text-3xl md:text-4xl tracking-wide mt-6 font-script">
+              <p className="text-stone-200 text-2xl sm:text-3xl md:text-4xl tracking-wide mt-6 font-script">
                 Book now and get the best prices at The Corporate House
               </p>
             </div>
 
             {/* Floating Search Widget */}
-            <div className="mt-8 md:mt-12 glass-panel rounded-xl shadow-[0_20px_50px_rgba(42,78,63,0.12)] p-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-[120%] lg:w-[130%] relative z-20 border border-white/60 hover:border-brand-gold/30 transition-all duration-300">
+            <div className="mt-8 md:mt-12 glass-panel rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-[120%] lg:w-[130%] relative z-20 border border-white/60 hover:border-brand-gold/30 transition-all duration-300">
               <div className="flex-1 flex flex-col gap-1 px-2">
                 <span className="text-[12px] uppercase font-bold tracking-widest text-[#9C8567]">Arrival date</span>
                 <input
@@ -472,7 +482,7 @@ export default function HotelUI() {
           </div>
 
           {/* Right Column: Hero Image as a Card */}
-          <div className="w-full md:w-[55%] flex items-center justify-center p-4 md:p-6 lg:p-8 bg-[E6D09F]">
+          {/* <div className="w-full md:w-[55%] flex items-center justify-center p-4 md:p-6 lg:p-8 bg-transparent relative z-10">
             <div className="w-full max-w-2xl h-[500px] md:h-[600px] relative rounded-2xl overflow-hidden border border-[#E5E2DA] shadow-2xl group"
               onMouseEnter={() => setShowGallery(true)}
               onMouseLeave={() => setShowGallery(false)}
@@ -570,7 +580,7 @@ export default function HotelUI() {
               </div>
               <div className="absolute inset-0 bg-black/5"></div>
             </div>
-          </div>
+          </div> */}
         </section>
 
         {/* INTRODUCTION SECTION */}
