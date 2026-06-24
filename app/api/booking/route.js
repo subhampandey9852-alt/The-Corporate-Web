@@ -65,7 +65,7 @@ export async function POST(req) {
       !bookingData.checkInTime ||
       !bookingData.checkOutDate ||
       !bookingData.checkOutTime ||
-      !bookingData.totalPrice
+      bookingData.totalPrice === undefined
     ) {
       return NextResponse.json({ error: "All booking details are required (including phone number)" }, { status: 400 });
     }
@@ -77,7 +77,7 @@ export async function POST(req) {
 
     // Server-side check for date overlap availability
     const bookings = await getBookings();
-    const isOverlapping = bookings.some(b => {
+    const isOverlapping = bookingData.roomId.startsWith("event-") ? false : bookings.some(b => {
       if (b.roomId !== bookingData.roomId) return false;
       if (b.status === "Cancelled") return false;
 

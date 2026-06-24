@@ -58,17 +58,17 @@ function Navbar() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-10 ">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-xs uppercase font-medium tracking-wider uppercase font-medium tracking-[0.15em] transition-all duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#FFC72C] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 ${isActive ? "text-[#FFC72C] after:scale-x-100" : "text-[#FFC72C] hover:text-white"
+                  className={`text-sm uppercase font-medium tracking-[0.15em] transition-all duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 ${isActive ? "text-white after:scale-x-100" : "text-white/70 hover:text-white"
                     }`}
                 >
-                  {link.name}
+                  <h4>{link.name}</h4>
                 </Link>
               );
             })}
@@ -140,7 +140,7 @@ function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="block py-2 text-xs uppercase tracking-widest text-stone-300 hover:text-brand-gold font-medium transition-colors"
+              className="block py-2 text-xs uppercase tracking-widest text-stone-300 hover:text-white font-medium transition-colors"
             >
               {link.name}
             </Link>

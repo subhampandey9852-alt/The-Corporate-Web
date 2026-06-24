@@ -241,6 +241,15 @@ export default function HotelUI() {
   const [drawerPhone, setDrawerPhone] = useState("");
   const [isDrawerSubmitting, setIsDrawerSubmitting] = useState(false);
 
+  // Event booking state
+  const [eventSubmitted, setEventSubmitted] = useState(false);
+  const [eventType, setEventType] = useState("Wedding Reception");
+  const [eventGuests, setEventGuests] = useState("100-250");
+  const [eventPhone, setEventPhone] = useState("");
+  const [eventName, setEventName] = useState("");
+  const [eventDate, setEventDate] = useState("2026-06-30");
+  const [isEventSubmitting, setIsEventSubmitting] = useState(false);
+
   // Filtered rooms based on Category state
   const filteredRooms = roomsList.filter(room => {
     const matchesCategory = selectedCategory === "all" || room.category === selectedCategory;
@@ -342,9 +351,57 @@ export default function HotelUI() {
     }
   };
 
+  const handleEventInquiry = async (e) => {
+    e.preventDefault();
+    if (!eventPhone.trim() || !eventName.trim() || !eventDate) {
+      alert("Please fill in all event inquiry details.");
+      return;
+    }
+
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(eventPhone)) {
+      alert("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    setIsEventSubmitting(true);
+
+    const bookingPayload = {
+      roomId: `event-${eventType.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+      roomName: `Event: ${eventType} (${eventGuests} Guests)`,
+      guestName: eventName,
+      phone: eventPhone,
+      checkInDate: eventDate,
+      checkInTime: "12:00",
+      checkOutDate: eventDate,
+      checkOutTime: "23:59",
+      totalPrice: 0,
+      paymentMethod: "Cash Payment"
+    };
+
+    try {
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bookingPayload)
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setEventSubmitted(true);
+      } else {
+        alert(data.error || "Failed to submit event inquiry. Please try again.");
+      }
+    } catch (err) {
+      console.error("Event inquiry submission error:", err);
+      alert("A network error occurred. Please try again.");
+    } finally {
+      setIsEventSubmitting(false);
+    }
+  };
+
   return (
     <main>
-      <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-italic selection:bg-brand-green selection:text-white bg-brand-cream `}>
+      <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-italic selection:bg-brand-green selection:text-white bg-[#E8F2F7] `}>
 
         {/* HERO SECTION */}
         <section className="relative min-h-[90vh] md:h-[calc(100vh-4rem)] flex flex-col md:flex-row items-stretch overflow-hidden border-b border-[#E5E2DA]">
@@ -727,16 +784,192 @@ export default function HotelUI() {
           </div>
         </section>
 
-        {/* SECURE PARKING SECTION */}
-        <section id="parking" className="py-20 color-brand-cream border-t border-[#E5E2DA]">
+        {/* BANQUET & WEDDING SECTION */}
+        <section id="events" className="py-24 bg-[#E8F2F7] border-t border-[#C5A880]/30">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-            <div className={`flex flex-col lg:flex-row items-center w-full lg:h-[550px] transition-all duration-700 ease-in-out ${isParkingHovered ? "gap-0" : "gap-12"}`}>
+
+            {/* Centered Headers */}
+            <div className="text-center mb-16">
+              <span className="text-xs uppercase tracking-[0.25em] text-[#5C1A24] font-bold block">Celebrations & Galas</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-light text-[#1E1C1A] mt-3">
+                Grand Venues & Royal Occasions
+              </h2>
+              <p className="text-stone-600 text-sm font-light mt-2 max-w-2xl mx-auto">
+                Host your monumental celebrations, weddings, milestone birthdays, or elite corporate gatherings in our beautifully styled palaces.
+              </p>
+              <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#C5A880] to-transparent mx-auto mt-4"></div>
+            </div>
+
+            {/* Asymmetric 3-Card Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+
+              {/* Card 1: Weddings */}
+              <div className="group relative rounded-2xl overflow-hidden shadow-2xl h-[420px] border border-[#C5A880]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[#C5A880]/15">
+                <img
+                  src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80"
+                  alt="Royal Weddings"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A0D10]/90 via-[#1A0D10]/40 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#C5A880] font-bold block mb-1">Tailored Receptions</span>
+                  <h3 className="text-2xl font-serif font-bold text-white tracking-wide">Royal Weddings</h3>
+                  <p className="text-stone-300 text-xs font-light mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Bespoke floral design, grand entrance settings, and customized layouts for your memorable union.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 2: Birthdays */}
+              <div className="group relative rounded-2xl overflow-hidden shadow-2xl h-[420px] border border-[#C5A880]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[#C5A880]/15">
+                <img
+                  src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80"
+                  alt="Milestone Birthdays"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A0D10]/90 via-[#1A0D10]/40 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#C5A880] font-bold block mb-1">Bespoke Galas</span>
+                  <h3 className="text-2xl font-serif font-bold text-white tracking-wide">Milestone Birthdays</h3>
+                  <p className="text-stone-300 text-xs font-light mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Host memorable private birthday celebrations with elegant table setups, live music, and palace catering.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 3: Corporate Banquets */}
+              <div className="group relative rounded-2xl overflow-hidden shadow-2xl h-[420px] border border-[#C5A880]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[#C5A880]/15">
+                <img
+                  src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80"
+                  alt="Palace Banquets"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A0D10]/90 via-[#1A0D10]/40 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#C5A880] font-bold block mb-1">Executive Meets</span>
+                  <h3 className="text-2xl font-serif font-bold text-white tracking-wide">Palace Banquets</h3>
+                  <p className="text-stone-300 text-xs font-light mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Sophisticated convention centers, premium catering, and high-speed tech setups for corporate summits.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Event Inquiry Form Desk */}
+            <div className="max-w-4xl mx-auto p-8 bg-[#1A0D10] border border-[#C5A880]/30 rounded-2xl shadow-2xl text-white">
+              {!eventSubmitted ? (
+                <form onSubmit={handleEventInquiry} className="space-y-6">
+                  <div className="text-center pb-4 border-b border-[#C5A880]/20">
+                    <h4 className="text-xs uppercase tracking-widest text-[#C5A880] font-bold">
+                      Connect with our Palace Event Planner
+                    </h4>
+                    <p className="text-[10px] text-stone-400 mt-1 font-light">Custom tailor your catering, guest counts, and banquet settings.</p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Your Name</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Enter name"
+                        value={eventName}
+                        onChange={(e) => setEventName(e.target.value)}
+                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#C5A880] transition-colors"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Contact Phone</label>
+                      <input
+                        type="tel"
+                        required
+                        maxLength={10}
+                        placeholder="Phone number"
+                        value={eventPhone}
+                        onChange={(e) => setEventPhone(e.target.value)}
+                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#C5A880] transition-colors"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Event Date</label>
+                      <input
+                        type="date"
+                        required
+                        value={eventDate}
+                        onChange={(e) => setEventDate(e.target.value)}
+                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2 text-xs text-white focus:outline-none focus:border-[#C5A880] transition-colors cursor-pointer text-stone-300"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Event Type</label>
+                      <select
+                        value={eventType}
+                        onChange={(e) => setEventType(e.target.value)}
+                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#C5A880] transition-colors cursor-pointer text-stone-300"
+                      >
+                        <option value="Wedding Reception">Wedding Ceremony</option>
+                        <option value="Birthday & Family Function">Birthday Celebration</option>
+                        <option value="Corporate Gala">Corporate Banquet</option>
+                        <option value="Conferences & Seminars">Seminar/Conference</option>
+                      </select>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Estimated Guests</label>
+                      <select
+                        value={eventGuests}
+                        onChange={(e) => setEventGuests(e.target.value)}
+                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#C5A880] transition-colors cursor-pointer text-stone-300"
+                      >
+                        <option value="0-50">0 - 50 Guests</option>
+                        <option value="50-100">50 - 100 Guests</option>
+                        <option value="100-250">100 - 250 Guests</option>
+                        <option value="250-500">250 - 500 Guests</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-3.5 bg-[#C5A880] hover:bg-[#B59870] text-[#1E1C1A] text-xs font-bold uppercase tracking-wider rounded-md transition-all duration-300 shadow-md hover:shadow-[#C5A880]/25"
+                  >
+                    Send Inquiries to Palace Concierge
+                  </button>
+                </form>
+              ) : (
+                <div className="text-center py-6 space-y-4">
+                  <div className="w-12 h-12 rounded-full bg-[#C5A880]/15 text-[#C5A880] flex items-center justify-center mx-auto border border-[#C5A880]/30">
+                    <Check className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <h4 className="font-serif font-bold text-[#C5A880] text-base font-semibold">Inquiry Submitted Successfully!</h4>
+                    <p className="text-xs text-stone-300 max-w-md mx-auto leading-relaxed">
+                      Thank you, {eventName}. Your request for {eventType} ({eventGuests} guests) is registered. A coordinator will call you back shortly at {eventPhone}.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setEventSubmitted(false)}
+                    className="text-[10px] uppercase font-bold tracking-widest text-[#C5A880] hover:underline"
+                  >
+                    Submit Another Inquiry
+                  </button>
+                </div>
+              )}
+            </div>
+
+          </div>
+        </section>
+
+        {/* SECURE PARKING SECTION */}
+        <section id="parking" className="py-24 bg-gradient-to-b from-[#FAF8F5] to-[#F5EFEB] border-t border-[#C5A880]/30">
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+            <div className={`flex flex-col lg:flex-row items-center w-full lg:h-[550px] transition-all duration-700 ease-in-out ${isParkingHovered ? "gap-0" : "gap-16"}`}>
 
               {/* Left Column: Parking Image */}
               <div
                 onMouseEnter={() => setIsParkingHovered(true)}
                 onMouseLeave={() => setIsParkingHovered(false)}
-                className={`relative h-[500px] lg:h-[550px] p-[4px] bg-gradient-to-r from-[#243B6B] via-[#4B3F8F] to-[#6B2D5C] bg-[length:200%_auto] shadow-2xl shadow-black/50 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer ${isParkingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[58%] rounded-2xl"
+                className={`relative h-[500px] lg:h-[550px] p-[6px] bg-[#1A0D10] border border-[#C5A880]/40 shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer ${isParkingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[58%] rounded-2xl"
                   }`}
               >
                 <div className={`relative w-full h-full overflow-hidden transition-all duration-700 ease-in-out ${isParkingHovered ? "rounded-[36px]" : "rounded-xl"}`}>
@@ -745,10 +978,10 @@ export default function HotelUI() {
                     alt="Secure Parking"
                     className={`w-full h-full object-cover transition-all duration-700 ease-in-out ${isParkingHovered ? "rounded-[36px]" : "rounded-xl"}`}
                   />
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <span className="text-xs uppercase tracking-wider text-white font-bold block mb-1">Corporate Transit</span>
-                    <span className="text-lg font-serif text-white font-semibold">24/7 Monitored Parking</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A0D10]/80 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-6 left-6 right-6 z-10">
+                    <span className="text-[10px] uppercase tracking-[0.25em] text-[#C5A880] font-bold block mb-1">Palace Transit</span>
+                    <span className="text-xl font-serif text-white font-semibold tracking-wide">24/7 Monitored Parking</span>
                   </div>
                 </div>
               </div>
@@ -756,33 +989,33 @@ export default function HotelUI() {
               {/* Right Column: Details */}
               <div className={`order-1 lg:order-2 text-black transition-all duration-700 ease-in-out ${isParkingHovered ? "w-0 opacity-0 scale-95 overflow-hidden pointer-events-none lg:w-0" : "w-full lg:w-[38%] opacity-100"
                 }`}>
-                <span className="text-base uppercase tracking-[0.25em] text-black font-bold">Seamless Access</span>
-                <h2 className="text-4xl sm:text-5xl font-serif font-light text-black mt-3">
+                <span className="text-xs uppercase tracking-[0.25em] text-[#5C1A24] font-bold block">Seamless Access</span>
+                <h2 className="text-4xl sm:text-5xl font-serif font-light text-[#1E1C1A] mt-2 tracking-tight">
                   Secure & Spacious Parking
                 </h2>
-                <div className="w-12 h-0.5 bg-[#B08A5A] mt-4 mb-6"></div>
-                <p className="text-black text-lg  font-bold leading-relaxed mb-8">
+                <div className="w-20 h-[2px] bg-gradient-to-r from-[#C5A880] to-transparent mt-4 mb-6"></div>
+                <p className="text-stone-650 text-sm leading-relaxed mb-8 font-light">
                   Enjoy peace of mind with our secure, multi-level underground parking and open-air valet areas. Specially designed for corporate events and long-term executive stays, our facilities feature round-the-clock security surveillance and EV charging ports.
                 </p>
 
                 <div className="space-y-6">
                   <div className="flex gap-4 items-start">
-                    <div className="w-8 h-8 rounded-full bg-white/10 text-black flex items-center justify-center flex-shrink-0 mt-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-green-500" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#5C1A24] to-[#1A0D10] text-[#C5A880] flex items-center justify-center flex-shrink-0 border border-[#C5A880]/30 shadow-md mt-1">
+                      <ShieldCheck className="w-4 h-4 text-[#C5A880]" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold font-serif text-black">CCTV & Valet Service</h4>
-                      <p className="text-stone-950 text-base font-normal mt-1">Round-the-clock monitoring and professional valet services to ensure your vehicle is safe and accessible.</p>
+                      <h4 className="text-base font-bold font-serif text-[#1E1C1A]">CCTV & Valet Service</h4>
+                      <p className="text-stone-600 text-xs font-normal mt-1 leading-relaxed">Round-the-clock monitoring and professional valet services to ensure your vehicle is safe and accessible.</p>
                     </div>
                   </div>
 
                   <div className="flex gap-4 items-start">
-                    <div className="w-8 h-8 rounded-full bg-black/10 text-white flex items-center justify-center flex-shrink-0 mt-1">
-                      <Sparkles className="w-3.5 h-3.5 text-green-500" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#5C1A24] to-[#1A0D10] text-[#C5A880] flex items-center justify-center flex-shrink-0 border border-[#C5A880]/30 shadow-md mt-1">
+                      <Sparkles className="w-4 h-4 text-[#C5A880]" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold font-serif text-black">EV Charging Stations</h4>
-                      <p className="text-black text-base font-normal mt-1">High-speed charging bays compatible with all major electric vehicle models for eco-conscious travelers.</p>
+                      <h4 className="text-base font-bold font-serif text-[#1E1C1A]">EV Charging Stations</h4>
+                      <p className="text-stone-600 text-xs font-normal mt-1 leading-relaxed">High-speed charging bays compatible with all major electric vehicle models for eco-conscious travelers.</p>
                     </div>
                   </div>
                 </div>
@@ -793,39 +1026,39 @@ export default function HotelUI() {
         </section>
 
         {/* SIGNATURE DINING SECTION */}
-        <section id="dining" className="py-20 color-brand-cream border-t border-[#E5E2DA]">
+        <section id="dining" className="py-24 bg-gradient-to-b from-[#FAF8F5] to-[#F5EFEB] border-t border-[#C5A880]/30">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-            <div className={`flex flex-col lg:flex-row items-center w-full lg:h-[550px] transition-all duration-700 ease-in-out ${isWaitingHovered ? "gap-0" : "gap-12"}`}>
+            <div className={`flex flex-col lg:flex-row items-center w-full lg:h-[550px] transition-all duration-700 ease-in-out ${isWaitingHovered ? "gap-0" : "gap-16"}`}>
 
               {/* Left Column: Details */}
               <div className={`text-black transition-all duration-700 ease-in-out ${isWaitingHovered ? "w-0 opacity-0 scale-95 overflow-hidden pointer-events-none lg:w-0" : "w-full lg:w-[46%] opacity-100"}`}>
-                <span className="text-base uppercase tracking-[0.25em] text-black font-bold">Sophisticated Comfort</span>
-                <h2 className="text-4xl sm:text-5xl font-serif font-light text-black mt-3">
+                <span className="text-xs uppercase tracking-[0.25em] text-[#5C1A24] font-bold block">Sophisticated Comfort</span>
+                <h2 className="text-4xl sm:text-5xl font-serif font-light text-[#1E1C1A] mt-2 tracking-tight">
                   Executive Waiting Room & Lounge
                 </h2>
-                <div className="w-12 h-0.5 bg-black mt-4 mb-6"></div>
-                <p className="text-black text-lg font-bold leading-relaxed mb-8">
+                <div className="w-20 h-[2px] bg-gradient-to-r from-[#C5A880] to-transparent mt-4 mb-6"></div>
+                <p className="text-stone-600 text-sm leading-relaxed mb-8 font-light">
                   Relax or remain productive in our signature corporate waiting rooms and transit lounges. Designed for incoming executives and busy travelers, our lounges offer private workstations, high-speed connectivity, and curated refreshments.
                 </p>
 
                 <div className="space-y-6">
                   <div className="flex gap-4 items-start">
-                    <div className="w-8 h-8 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 mt-1">
-                      <Star className="w-3.5 h-3.5 fill-brand-green text-brand-green" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#5C1A24] to-[#1A0D10] text-[#C5A880] flex items-center justify-center flex-shrink-0 border border-[#C5A880]/30 shadow-md mt-1">
+                      <Star className="w-4 h-4 text-[#C5A880] fill-[#C5A880]" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold font-serif text-black">Luxe Transit - Transit Seating</h4>
-                      <p className="text-black text-base font-normal mt-1">Plush leather armchairs, quiet alcoves, and presentation screens for pre-check-in meetings.</p>
+                      <h4 className="text-base font-bold font-serif text-[#1E1C1A]">Luxe Transit - Transit Seating</h4>
+                      <p className="text-stone-600 text-xs font-normal mt-1 leading-relaxed">Plush leather armchairs, quiet alcoves, and presentation screens for pre-check-in meetings.</p>
                     </div>
                   </div>
 
                   <div className="flex gap-4 items-start">
-                    <div className="w-8 h-8 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 mt-1">
-                      <Flame className="w-3.5 h-3.5 text-brand-green" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#5C1A24] to-[#1A0D10] text-[#C5A880] flex items-center justify-center flex-shrink-0 border border-[#C5A880]/30 shadow-md mt-1">
+                      <Flame className="w-4 h-4 text-[#C5A880]" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold font-serif text-black">Bespoke Refreshments - Sip & Connect</h4>
-                      <p className="text-black text-base font-normal mt-1">Complimentary single-origin coffees, fresh botanical teas, and light pastries served daily.</p>
+                      <h4 className="text-base font-bold font-serif text-[#1E1C1A]">Bespoke Refreshments - Sip & Connect</h4>
+                      <p className="text-stone-600 text-xs font-normal mt-1 leading-relaxed">Complimentary single-origin coffees, fresh botanical teas, and light pastries served daily.</p>
                     </div>
                   </div>
                 </div>
@@ -835,7 +1068,7 @@ export default function HotelUI() {
               <div
                 onMouseEnter={() => setIsWaitingHovered(true)}
                 onMouseLeave={() => setIsWaitingHovered(false)}
-                className={`relative h-[500px] lg:h-[550px] p-[4px] bg-gradient-to-r from-[#243B6B] via-[#4B3F8F] to-[#6B2D5C] bg-[length:200%_auto] shadow-2xl shadow-black/50 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer perspective-[1000px] hover:scale-[1.03] hover:[transform:rotateY(-6deg)_rotateX(4deg)] hover:shadow-black/75 hover:animate-gradient-x will-change-transform isolation-isolate ${isWaitingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[50%] rounded-2xl"
+                className={`relative h-[500px] lg:h-[550px] p-[6px] bg-[#1A0D10] border border-[#C5A880]/40 shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer perspective-[1000px] hover:scale-[1.03] hover:[transform:rotateY(-6deg)_rotateX(4deg)] hover:shadow-black/75 will-change-transform isolation-isolate ${isWaitingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[50%] rounded-2xl"
                   }`}
               >
                 <div className={`relative w-full h-full overflow-hidden transition-all duration-700 ease-in-out ${isWaitingHovered ? "rounded-[36px]" : "rounded-xl"}`}>

@@ -148,7 +148,9 @@ export default function MyBookingsPage() {
                       {/* Room & Status */}
                       <div className="flex justify-between items-start gap-4">
                         <div className="space-y-1">
-                          <span className="text-[10px] md:text-xs uppercase font-bold text-brand-green tracking-widest block">Boutique Suite</span>
+                          <span className="text-[10px] md:text-xs uppercase font-bold text-brand-green tracking-widest block">
+                            {booking.roomId?.startsWith("event-") ? "Royal Event Booking" : "Boutique Suite"}
+                          </span>
                           <h3 className="text-2xl font-serif font-bold text-slate-900 leading-tight hover:text-brand-green transition-colors">{booking.roomName}</h3>
                         </div>
                         <span
