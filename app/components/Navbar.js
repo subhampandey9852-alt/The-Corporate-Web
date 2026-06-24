@@ -58,7 +58,7 @@ function Navbar() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-10 ">
+          <div className="hidden lg:flex items-center gap-6 lg:gap-10 ">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -74,7 +74,7 @@ function Navbar() {
             })}
           </div>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden lg:flex items-center">
             <Link
               href="/booking"
               className="px-6 py-2.5 border border-brand-gold/40 hover:bg-[#FFC72C] hover:text-black hover:border-brand-gold text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#FFC72C] rounded-sm transition-all duration-500 shadow-sm hover:shadow-brand-gold/25"
@@ -84,7 +84,7 @@ function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex md:hidden">
+          <div className="flex lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
@@ -131,7 +131,7 @@ function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
           }`}
       >
         <div className="px-6 pt-2 pb-6 space-y-3 bg-brand-charcoal/95 border-b border-brand-green/20 shadow-lg">
