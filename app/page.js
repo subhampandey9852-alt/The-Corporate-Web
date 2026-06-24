@@ -607,11 +607,11 @@ export default function HotelUI() {
               </div>
             }
           >
-            <div className="w-full h-full bg-[#8EA79A] p-4 md:p-6 overflow-y-auto grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="w-full h-full bg-gradient-to-br from-[#1E1C1A] via-[#2A4E3F]/85 to-[#1A0D10] p-6 md:p-8 overflow-y-auto grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-8 border border-[#C5A880]/20">
               {GALLERY_IMAGES.map((img, idx) => (
                 <div
                   key={idx}
-                  className="group relative overflow-hidden rounded-2xl aspect-video md:aspect-auto md:h-44 cursor-pointer border border-[#E5E2DA]/15 shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
+                  className="group relative overflow-hidden rounded-2xl aspect-video md:aspect-auto md:h-44 cursor-pointer border border-[#C5A880]/20 shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(197,168,128,0.25)] hover:border-[#C5A880]/70"
                 >
                   <img
                     src={img.src}
