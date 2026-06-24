@@ -26,7 +26,7 @@ const alexBrush = Alex_Brush({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${alexBrush.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${alexBrush.variable} overflow-x-hidden`}>
       <body
         className={`${poppins.className} min-h-screen flex flex-col antialiased text-black bg-[#A52A2A] transition-colors duration-300 relative overflow-x-hidden`}
       >

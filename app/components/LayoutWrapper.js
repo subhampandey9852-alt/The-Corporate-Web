@@ -9,11 +9,11 @@ export default function LayoutWrapper({ children }) {
   const isAdmin = pathname && (pathname === "/admin" || pathname.startsWith("/admin/"));
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen w-full overflow-x-hidden relative">
       {!isAdmin && <Navbar />}
-      <main className={`flex-grow w-full ${isAdmin ? "" : "pt-16"}`}>
+      <main className={`flex-grow w-full overflow-x-hidden ${isAdmin ? "" : "pt-16"}`}>
         {children}
       </main>
-    </>
+    </div>
   );
 }
