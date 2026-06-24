@@ -433,7 +433,7 @@ export default function HotelUI() {
             </div>
 
             {/* Floating Search Widget */}
-            <div className="mt-8 md:mt-12 glass-panel rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-[120%] lg:w-[130%] max-w-full md:max-w-none mx-auto md:mx-0 relative z-20 border border-white/60 hover:border-brand-gold/30 transition-all duration-300">
+            <div className="mt-8 md:mt-12 glass-panel rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-[180%] lg:w-[130%] max-w-full md:max-w-none mx-auto md:mx-0 relative z-20 border border-white/60 hover:border-brand-gold/30 transition-all duration-300">
               <div className="flex-1 flex flex-col gap-1 px-2">
                 <span className="text-[12px] uppercase font-bold tracking-widest text-[#9C8567]">Arrival date</span>
                 <input
