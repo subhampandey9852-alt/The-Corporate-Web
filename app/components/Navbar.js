@@ -50,15 +50,15 @@ function Navbar() {
             <img
               src="/images/The Corporate House (15).png"
               alt="The Corporate House Logo"
-              className="h-20 md:h-24 w-auto object-contain brightness-150 contrast-125 drop-shadow-md transition-transform duration-500 hover:scale-105"
+              className="h-11 sm:h-16 md:h-24 w-auto object-contain brightness-150 contrast-125 drop-shadow-md transition-transform duration-500 hover:scale-105"
             />
-            <span className="font-serif font-bold text-base md:text-xl text-white tracking-wider leading-none uppercase">
+            <span className="font-serif font-bold text-[10px] xs:text-xs sm:text-base md:text-xl text-white tracking-wider leading-none uppercase">
               the <span className="text-[#FFC72C]">corporate</span> house
             </span>
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-10 ">
+          <div className="hidden md:flex items-center gap-4 lg:gap-10 ">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -131,7 +131,7 @@ function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
           }`}
       >
         <div className="px-6 pt-2 pb-6 space-y-3 bg-brand-charcoal/95 border-b border-brand-green/20 shadow-lg">

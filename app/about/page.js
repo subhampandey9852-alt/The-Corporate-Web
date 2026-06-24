@@ -119,7 +119,7 @@ function About() {
           <div className="w-12 h-12 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-2 border border-amber-500/25">
             <ListTodo className="w-6 h-6" />
           </div>
-          <h3 className="text-xl md:text-2xl font-serif font-light text-white">
+          <h3 className="text-xl md:text-2xl font-serif font-light text-black">
             Guest Stay Request Planner
           </h3>
           <p className="text-slate-400 text-xs font-light max-w-sm mx-auto">
@@ -128,7 +128,7 @@ function About() {
         </div>
 
         {/* Input area */}
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
             value={requestInput}
@@ -139,7 +139,7 @@ function About() {
           />
           <button
             onClick={handleAddRequest}
-            className="px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-950 bg-amber-500 hover:bg-amber-600 transition-colors whitespace-nowrap shadow-md"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-950 bg-amber-500 hover:bg-amber-600 transition-colors whitespace-nowrap shadow-md text-center"
           >
             Add Request
           </button>

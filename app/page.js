@@ -433,7 +433,7 @@ export default function HotelUI() {
             </div>
 
             {/* Floating Search Widget */}
-            <div className="mt-8 md:mt-12 glass-panel rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-[120%] lg:w-[130%] relative z-20 border border-white/60 hover:border-brand-gold/30 transition-all duration-300">
+            <div className="mt-8 md:mt-12 glass-panel rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-[120%] lg:w-[130%] max-w-full md:max-w-none mx-auto md:mx-0 relative z-20 border border-white/60 hover:border-brand-gold/30 transition-all duration-300">
               <div className="flex-1 flex flex-col gap-1 px-2">
                 <span className="text-[12px] uppercase font-bold tracking-widest text-[#9C8567]">Arrival date</span>
                 <input
@@ -474,7 +474,7 @@ export default function HotelUI() {
 
               <button
                 onClick={() => router.push("/booking")}
-                className="bg-gradient-x-gold-green animate-gradient-x text-white text-xs font-bold uppercase tracking-widest py-4 px-6 rounded-lg transition-all duration-300 whitespace-nowrap text-center shadow-lg hover:shadow-brand-green/20 hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full sm:w-auto bg-gradient-x-gold-green animate-gradient-x text-white text-xs font-bold uppercase tracking-widest py-4 px-6 rounded-lg transition-all duration-300 whitespace-nowrap text-center shadow-lg hover:shadow-brand-green/20 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Book a Stay
               </button>
@@ -979,7 +979,7 @@ export default function HotelUI() {
               <div
                 onMouseEnter={() => setIsParkingHovered(true)}
                 onMouseLeave={() => setIsParkingHovered(false)}
-                className={`relative h-[500px] lg:h-[550px] p-[6px] bg-[#1A0D10] border border-[#C5A880]/40 shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer ${isParkingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[58%] rounded-2xl"
+                className={`relative h-[280px] sm:h-[400px] lg:h-[550px] p-[6px] bg-[#1A0D10] border border-[#C5A880]/40 shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer ${isParkingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[58%] rounded-2xl"
                   }`}
               >
                 <div className={`relative w-full h-full overflow-hidden transition-all duration-700 ease-in-out ${isParkingHovered ? "rounded-[36px]" : "rounded-xl"}`}>
@@ -997,7 +997,7 @@ export default function HotelUI() {
               </div>
 
               {/* Right Column: Details */}
-              <div className={`order-1 lg:order-2 text-black transition-all duration-700 ease-in-out ${isParkingHovered ? "w-0 opacity-0 scale-95 overflow-hidden pointer-events-none lg:w-0" : "w-full lg:w-[38%] opacity-100"
+              <div className={`order-1 lg:order-2 text-black transition-all duration-700 ease-in-out ${isParkingHovered ? "lg:w-0 lg:opacity-0 lg:scale-95 lg:overflow-hidden lg:pointer-events-none" : "w-full lg:w-[38%] opacity-100"
                 }`}>
                 <span className="text-xs uppercase tracking-[0.25em] text-[#5C1A24] font-bold block">Seamless Access</span>
                 <h2 className="text-4xl sm:text-5xl font-serif font-light text-[#1E1C1A] mt-2 tracking-tight">
@@ -1039,15 +1039,14 @@ export default function HotelUI() {
         <section id="dining" className="py-24 bg-gradient-to-b from-[#FAF8F5] to-[#F5EFEB] border-t border-[#C5A880]/30">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
             <div className={`flex flex-col lg:flex-row items-center w-full lg:h-[550px] transition-all duration-700 ease-in-out ${isWaitingHovered ? "gap-0" : "gap-16"}`}>
-
               {/* Left Column: Details */}
-              <div className={`text-black transition-all duration-700 ease-in-out ${isWaitingHovered ? "w-0 opacity-0 scale-95 overflow-hidden pointer-events-none lg:w-0" : "w-full lg:w-[46%] opacity-100"}`}>
+              <div className={`text-black transition-all duration-700 ease-in-out ${isWaitingHovered ? "lg:w-0 lg:opacity-0 lg:scale-95 lg:overflow-hidden lg:pointer-events-none" : "w-full lg:w-[46%] opacity-100"}`}>
                 <span className="text-xs uppercase tracking-[0.25em] text-[#5C1A24] font-bold block">Sophisticated Comfort</span>
                 <h2 className="text-4xl sm:text-5xl font-serif font-light text-[#1E1C1A] mt-2 tracking-tight">
                   Executive Waiting Room & Lounge
                 </h2>
                 <div className="w-20 h-[2px] bg-gradient-to-r from-[#C5A880] to-transparent mt-4 mb-6"></div>
-                <p className="text-stone-600 text-sm leading-relaxed mb-8 font-bold">
+                <p className="text-stone-650 text-sm leading-relaxed mb-8 font-bold">
                   Relax or remain productive in our signature corporate waiting rooms and transit lounges. Designed for incoming executives and busy travelers, our lounges offer private workstations, high-speed connectivity, and curated refreshments.
                 </p>
 
@@ -1078,7 +1077,7 @@ export default function HotelUI() {
               <div
                 onMouseEnter={() => setIsWaitingHovered(true)}
                 onMouseLeave={() => setIsWaitingHovered(false)}
-                className={`relative h-[500px] lg:h-[550px] p-[6px] bg-[#1A0D10] border border-[#C5A880]/40 shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer perspective-[1000px] hover:scale-[1.03] hover:[transform:rotateY(-6deg)_rotateX(4deg)] hover:shadow-black/75 will-change-transform isolation-isolate ${isWaitingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[50%] rounded-2xl"
+                className={`relative h-[280px] sm:h-[400px] lg:h-[550px] p-[6px] bg-[#1A0D10] border border-[#C5A880]/40 shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer perspective-[1000px] hover:scale-[1.03] hover:[transform:rotateY(-6deg)_rotateX(4deg)] hover:shadow-black/75 will-change-transform isolation-isolate ${isWaitingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[50%] rounded-2xl"
                   }`}
               >
                 <div className={`relative w-full h-full overflow-hidden transition-all duration-700 ease-in-out ${isWaitingHovered ? "rounded-[36px]" : "rounded-xl"}`}>
