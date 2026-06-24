@@ -192,7 +192,7 @@ function PackagePage() {
         {PACKAGES.map((pkg) => (
           <div
             key={pkg.id}
-            className="group bg-card-gradient border border-[#E5E2DA]/20 rounded-2xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:border-brand-radishblack hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)]"
+            className="group bg-card-gradient border border-[#E5E2DA]/20 rounded-2xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)]"
           >
             {/* Image Wrap */}
             <div className="relative h-60 overflow-hidden border-b border-[#E5E2DA]/10">

@@ -645,7 +645,7 @@ export default function HotelUI() {
               {filteredRooms.map((room) => (
                 <div
                   key={room.id || room._id}
-                  className="group bg-card-gradient border border-[#E5E2DA]/20 rounded-xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] hover:border-brand-radishblack hover:bg-wooden"
+                  className="group bg-card-gradient rounded-xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] hover:bg-wooden"
                 >
                   {/* Image Wrap */}
                   <div className="relative h-56 overflow-hidden">
@@ -725,7 +725,7 @@ export default function HotelUI() {
                 return (
                   <div
                     key={idx}
-                    className="group bg-card-gradient border border-[#E5E2DA]/20 p-8 rounded-xl hover:border-brand-radishblack hover:bg-wooden -translate-y-0 hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] cursor-pointer"
+                    className="group bg-card-gradient border border-[#E5E2DA]/20 p-8 rounded-xl hover:bg-wooden -translate-y-0 hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] cursor-pointer"
                   >
                     <div className="w-12 h-12 rounded-lg bg-white/10 text-white flex items-center justify-center mb-5 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm group-hover:shadow-brand-gold/30">
                       <Icon className="w-5 h-5" />
@@ -758,7 +758,7 @@ export default function HotelUI() {
               {FOOD_ITEMS.map((item) => (
                 <div
                   key={item.id}
-                  className="group bg-card-gradient border border-[#E5E2DA]/20 rounded-xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] hover:border-brand-radishblack hover:bg-wooden"
+                  className="group bg-card-gradient border border-[#E5E2DA]/20 rounded-xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] hover:bg-wooden"
                 >
                   {/* Image Wrap */}
                   <div className="relative h-64 overflow-hidden">
@@ -979,7 +979,7 @@ export default function HotelUI() {
               <div
                 onMouseEnter={() => setIsParkingHovered(true)}
                 onMouseLeave={() => setIsParkingHovered(false)}
-                className={`relative h-[280px] sm:h-[400px] lg:h-[550px] p-[6px] bg-[#1A0D10] border border-[#C5A880]/40 shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer ${isParkingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[58%] rounded-2xl"
+                className={`relative h-[280px] sm:h-[400px] lg:h-[550px] shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer ${isParkingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[58%] rounded-2xl"
                   }`}
               >
                 <div className={`relative w-full h-full overflow-hidden transition-all duration-700 ease-in-out ${isParkingHovered ? "rounded-[36px]" : "rounded-xl"}`}>
@@ -1077,7 +1077,7 @@ export default function HotelUI() {
               <div
                 onMouseEnter={() => setIsWaitingHovered(true)}
                 onMouseLeave={() => setIsWaitingHovered(false)}
-                className={`relative h-[280px] sm:h-[400px] lg:h-[550px] p-[6px] bg-[#1A0D10] border border-[#C5A880]/40 shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer perspective-[1000px] hover:scale-[1.03] hover:[transform:rotateY(-6deg)_rotateX(4deg)] hover:shadow-black/75 will-change-transform isolation-isolate ${isWaitingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[50%] rounded-2xl"
+                className={`relative h-[280px] sm:h-[400px] lg:h-[550px] shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer perspective-[1000px] hover:scale-[1.03] hover:[transform:rotateY(-6deg)_rotateX(4deg)] hover:shadow-black/75 will-change-transform isolation-isolate ${isWaitingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[50%] rounded-2xl"
                   }`}
               >
                 <div className={`relative w-full h-full overflow-hidden transition-all duration-700 ease-in-out ${isWaitingHovered ? "rounded-[36px]" : "rounded-xl"}`}>

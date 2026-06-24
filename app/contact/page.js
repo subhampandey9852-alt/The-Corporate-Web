@@ -76,7 +76,7 @@ function Contact() {
 
       {/* Trust & Satisfaction Banner */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
+        <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
           <div className="w-12 h-12 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm">
             <Clock className="w-6 h-6" />
           </div>
@@ -88,7 +88,7 @@ function Contact() {
           </div>
         </div>
 
-        <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
+        <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
           <div className="w-12 h-12 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm">
             <ThumbsUp className="w-6 h-6" />
           </div>
@@ -100,7 +100,7 @@ function Contact() {
           </div>
         </div>
 
-        <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:border-brand-radishblack hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
+        <div className="p-6 bg-card-gradient border border-[#E5E2DA]/20 rounded-xl flex items-start gap-4 shadow-sm hover:bg-wooden -translate-y-0 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-[0_20px_45px_rgba(26,13,16,0.18)] cursor-pointer group">
           <div className="w-12 h-12 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm">
             <ShieldCheck className="w-6 h-6" />
           </div>
@@ -118,7 +118,7 @@ function Contact() {
 
         {/* Contact info channels (5 cols) */}
         <div className="lg:col-span-5 space-y-8">
-          <div className="bg-white border border-[#E5E2DA] rounded-xl p-8 space-y-8 shadow-sm hover:border-brand-radishblack/40 hover:shadow-[0_20px_50px_rgba(26,13,16,0.1)] transition-all duration-500">
+          <div className="bg-white border border-[#E5E2DA] rounded-xl p-8 space-y-8 shadow-sm hover:shadow-[0_20px_50px_rgba(26,13,16,0.1)] transition-all duration-500">
             <h3 className="text-xl font-serif font-bold uppercase tracking-wider text-[#1C2A22] pb-3 border-b border-stone-100">
               Direct Channels
             </h3>
@@ -160,7 +160,7 @@ function Contact() {
               </a>
 
               {/* Email Desk */}
-              <div className="flex gap-4 items-start p-5 bg-stone-50/50 border border-[#E5E2DA] rounded-xl hover:border-brand-radishblack hover:bg-white hover:-translate-y-0.5 transition-all duration-500 hover:shadow-md group">
+              <div className="flex gap-4 items-start p-5 bg-stone-50/50 border border-[#E5E2DA] rounded-xl hover:bg-white hover:-translate-y-0.5 transition-all duration-500 hover:shadow-md group">
                 <div className="w-11 h-11 rounded-lg bg-white border border-[#E5E2DA] text-stone-600 flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white transition-all duration-300">
                   <Mail className="w-6 h-6" />
                 </div>
@@ -171,7 +171,7 @@ function Contact() {
               </div>
 
               {/* Address */}
-              <div className="flex gap-4 items-start p-5 bg-stone-50/50 border border-[#E5E2DA] rounded-xl hover:border-brand-radishblack hover:bg-white hover:-translate-y-0.5 transition-all duration-500 hover:shadow-md group">
+              <div className="flex gap-4 items-start p-5 bg-stone-50/50 border border-[#E5E2DA] rounded-xl hover:bg-white hover:-translate-y-0.5 transition-all duration-500 hover:shadow-md group">
                 <div className="w-11 h-11 rounded-lg bg-white border border-[#E5E2DA] text-stone-600 flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white transition-all duration-300">
                   <MapPin className="w-6 h-6" />
                 </div>
