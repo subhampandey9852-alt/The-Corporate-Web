@@ -114,7 +114,7 @@ function About() {
       </section>
 
       {/* Redesigned Stay Request / Activity Planner (Todo App) */}
-      <section className="bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-xl p-8 max-w-2xl mx-auto shadow-2xl space-y-6 hover:border-slate-700 hover:-translate-y-1 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+      <section className="bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-xl p-4 sm:p-8 max-w-2xl mx-auto shadow-2xl space-y-6 hover:border-slate-700 hover:-translate-y-1 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
         <div className="text-center space-y-2">
           <div className="w-12 h-12 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-2 border border-amber-500/25">
             <ListTodo className="w-6 h-6" />
@@ -153,16 +153,16 @@ function About() {
             requestList.map((req, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-4 bg-slate-950/40 border border-slate-800/80 rounded-lg group hover:border-slate-700 hover:bg-slate-900/60 hover:-translate-y-0.5 transition-all duration-500 hover:shadow-md"
+                className="flex items-center justify-between p-4 bg-slate-950/40 border border-slate-800/80 rounded-lg group hover:border-slate-700 hover:bg-slate-900/60 hover:-translate-y-0.5 transition-all duration-500 hover:shadow-md gap-3"
               >
-                <div className="flex items-center gap-3">
-                  <span className="w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center text-[10px] font-bold">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <span className="w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center text-[10px] font-bold flex-shrink-0">
                     {idx + 1}
                   </span>
-                  <span className="text-slate-200 text-xs font-light">{req}</span>
+                  <span className="text-slate-200 text-xs font-light break-words min-w-0">{req}</span>
                 </div>
 
-                <div className="flex gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity">
+                <div className="flex gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0">
                   <button
                     onClick={() => handleEditRequest(idx)}
                     className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-800 transition-colors"
