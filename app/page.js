@@ -601,13 +601,13 @@ export default function HotelUI() {
           {/* 3D Scroll Showcase Wrap for the dining image gallery */}
           <ContainerScroll
             titleComponent={
-              <div className="mb-6">
-                <span className="text-sm uppercase tracking-[0.25em] text-[#FFC72C] font-semibold">Exquisite Collection</span>
-                <h3 className="text-3xl md:text-5xl font-serif text-white mt-2">Resort Artistry & Spaces</h3>
+              <div className="mb-12">
+                <span className="text-lg uppercase tracking-[0.25em] text-[#FFC72C] font-semibold">Exquisite Collection</span>
+                <h3 className="text-3xl md:text-5xl font-serif text-black mt-2">Resort Artistry & Spaces</h3>
               </div>
             }
           >
-            <div className="w-full h-full bg-[#1A0D10]/20 p-4 md:p-6 overflow-y-auto grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="w-full h-full bg-[#8EA79A] p-4 md:p-6 overflow-y-auto grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {GALLERY_IMAGES.map((img, idx) => (
                 <div
                   key={idx}
@@ -804,7 +804,7 @@ export default function HotelUI() {
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-light text-[#1E1C1A] mt-3">
                 Grand Venues & Royal Occasions
               </h2>
-              <p className="text-stone-600 text-sm font-light mt-2 max-w-2xl mx-auto">
+              <p className="text-brand-green text-sm font-light mt-2 max-w-2xl mx-auto">
                 Host your monumental celebrations, weddings, milestone birthdays, or elite corporate gatherings in our beautifully styled palaces.
               </p>
               <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#C5A880] to-transparent mx-auto mt-4"></div>
@@ -1004,7 +1004,7 @@ export default function HotelUI() {
                   Secure & Spacious Parking
                 </h2>
                 <div className="w-20 h-[2px] bg-gradient-to-r from-[#C5A880] to-transparent mt-4 mb-6"></div>
-                <p className="text-stone-650 text-sm leading-relaxed mb-8 font-light">
+                <p className="text-stone-650 text-sm leading-relaxed mb-8 font-bold">
                   Enjoy peace of mind with our secure, multi-level underground parking and open-air valet areas. Specially designed for corporate events and long-term executive stays, our facilities feature round-the-clock security surveillance and EV charging ports.
                 </p>
 
@@ -1015,7 +1015,7 @@ export default function HotelUI() {
                     </div>
                     <div>
                       <h4 className="text-base font-bold font-serif text-[#1E1C1A]">CCTV & Valet Service</h4>
-                      <p className="text-stone-600 text-xs font-normal mt-1 leading-relaxed">Round-the-clock monitoring and professional valet services to ensure your vehicle is safe and accessible.</p>
+                      <p className="text-stone-600 text-xs font-semibold mt-1 leading-relaxed">Round-the-clock monitoring and professional valet services to ensure your vehicle is safe and accessible.</p>
                     </div>
                   </div>
 
@@ -1025,7 +1025,7 @@ export default function HotelUI() {
                     </div>
                     <div>
                       <h4 className="text-base font-bold font-serif text-[#1E1C1A]">EV Charging Stations</h4>
-                      <p className="text-stone-600 text-xs font-normal mt-1 leading-relaxed">High-speed charging bays compatible with all major electric vehicle models for eco-conscious travelers.</p>
+                      <p className="text-stone-600 text-xs font-semibold mt-1 leading-relaxed">High-speed charging bays compatible with all major electric vehicle models for eco-conscious travelers.</p>
                     </div>
                   </div>
                 </div>
@@ -1047,7 +1047,7 @@ export default function HotelUI() {
                   Executive Waiting Room & Lounge
                 </h2>
                 <div className="w-20 h-[2px] bg-gradient-to-r from-[#C5A880] to-transparent mt-4 mb-6"></div>
-                <p className="text-stone-600 text-sm leading-relaxed mb-8 font-light">
+                <p className="text-stone-600 text-sm leading-relaxed mb-8 font-bold">
                   Relax or remain productive in our signature corporate waiting rooms and transit lounges. Designed for incoming executives and busy travelers, our lounges offer private workstations, high-speed connectivity, and curated refreshments.
                 </p>
 
@@ -1058,7 +1058,7 @@ export default function HotelUI() {
                     </div>
                     <div>
                       <h4 className="text-base font-bold font-serif text-[#1E1C1A]">Luxe Transit - Transit Seating</h4>
-                      <p className="text-stone-600 text-xs font-normal mt-1 leading-relaxed">Plush leather armchairs, quiet alcoves, and presentation screens for pre-check-in meetings.</p>
+                      <p className="text-stone-600 text-xs font-semibold mt-1 leading-relaxed">Plush leather armchairs, quiet alcoves, and presentation screens for pre-check-in meetings.</p>
                     </div>
                   </div>
 
@@ -1068,7 +1068,7 @@ export default function HotelUI() {
                     </div>
                     <div>
                       <h4 className="text-base font-bold font-serif text-[#1E1C1A]">Bespoke Refreshments - Sip & Connect</h4>
-                      <p className="text-stone-600 text-xs font-normal mt-1 leading-relaxed">Complimentary single-origin coffees, fresh botanical teas, and light pastries served daily.</p>
+                      <p className="text-stone-600 text-xs font-semibold mt-1 leading-relaxed">Complimentary single-origin coffees, fresh botanical teas, and light pastries served daily.</p>
                     </div>
                   </div>
                 </div>
