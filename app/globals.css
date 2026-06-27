@@ -73,10 +73,21 @@ button {
 }
 
 .group:hover {
-  filter: brightness(1.25);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 0 15px rgba(0, 0, 0, 0.02) !important;
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
+/* Only apply brightness glow to dark-themed cards */
+.group.bg-card-gradient:hover,
+.group.bg-wooden:hover,
+.group.bg-palace-gradient:hover,
+.group.bg-zinc-900:hover,
+.group.bg-stone-900:hover,
+.group.bg-zinc-950:hover {
+  filter: brightness(1.22);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), 0 0 30px rgba(255, 255, 255, 0.15) !important;
+}
+
 
 /* Diagonal Shine Sweep Effect */
 .group::after {

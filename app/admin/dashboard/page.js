@@ -511,7 +511,7 @@ export default function AdminDashboard() {
                       const heightPercent = Math.max(10, (item.value / maxVal) * 80); // Min 10% to show bar
 
                       return (
-                        <div key={idx} className="flex flex-col items-center group/bar flex-1 min-w-0 max-w-[100px] relative cursor-pointer">
+                        <div key={idx} className="flex flex-col items-center justify-end group/bar flex-1 h-full min-w-0 max-w-[100px] relative cursor-pointer">
                           {/* Tooltip on hover or click */}
                           <div className="absolute -top-12 opacity-0 group-hover/bar:opacity-100 transition-opacity duration-300 pointer-events-none bg-stone-900 border border-stone-850 text-white rounded-lg px-2.5 py-1 text-xs font-mono shadow-xl z-20 whitespace-nowrap">
                             ₹{item.value.toLocaleString()}
@@ -523,10 +523,10 @@ export default function AdminDashboard() {
                             whileHover={hasHover ? {
                               scale: 1.08,
                               y: -4,
-                              boxShadow: "0 10px 25px rgba(92,26,36,0.25)"
+                              boxShadow: "0 10px 25px rgba(42,78,63,0.25)"
                             } : undefined}
                             transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                            className="w-full h-full max-h-full bg-gradient-to-t from-[#C5A880] via-[#8B2635] to-[#5C1A24] rounded-t-lg relative origin-bottom"
+                            className="w-full max-h-full bg-gradient-to-t from-[#C5A880] via-[#3A6B56] to-[#2A4E3F] rounded-t-lg relative origin-bottom"
                             style={{ height: `${heightPercent}%` }}
                           >
                             <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-t-lg"></div>
@@ -541,9 +541,9 @@ export default function AdminDashboard() {
                 </div>
 
                 {selectedBar && (
-                  <div className="mt-4 p-3 bg-stone-50 border border-stone-200 rounded-lg flex items-center justify-between text-xs">
+                  <div className="mt-4 p-3 bg-stone-50 border border-[#C5A880]/30 rounded-lg flex items-center justify-between text-xs">
                     <span className="text-stone-600">Inspecting <strong className="text-stone-900">{selectedBar.name}</strong>:</span>
-                    <span className="font-mono font-bold text-[#5C1A24]">₹{selectedBar.value.toLocaleString()}</span>
+                    <span className="font-mono font-bold text-[#2A4E3F]">₹{selectedBar.value.toLocaleString()}</span>
                   </div>
                 )}
               </motion.div>
@@ -558,7 +558,7 @@ export default function AdminDashboard() {
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <h3 className="text-base uppercase font-bold tracking-wider text-stone-800 flex items-center gap-2">
-                        <Activity className="w-5 h-5 text-[#5C1A24]" />
+                        <Activity className="w-5 h-5 text-[#2A4E3F]" />
                         Booking Frequency Trend
                       </h3>
                       <p className="text-xs text-stone-500 mt-0.5">Timeline distribution of last 7 room bookings</p>
@@ -605,8 +605,8 @@ export default function AdminDashboard() {
                         <svg className="w-full h-64 overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
                           <defs>
                             <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#5C1A24" stopOpacity="0.4" />
-                              <stop offset="100%" stopColor="#C5A880" stopOpacity="0" />
+                              <stop offset="0%" stopColor="#2A4E3F" stopOpacity="0.45" />
+                              <stop offset="100%" stopColor="#C5A880" stopOpacity="0.02" />
                             </linearGradient>
                           </defs>
 
@@ -619,7 +619,7 @@ export default function AdminDashboard() {
                           <path d={areaPath} fill="url(#areaGrad)" />
 
                           {/* Line path */}
-                          <path d={linePath} fill="none" stroke="#5C1A24" strokeWidth="2.2" strokeLinecap="round" />
+                          <path d={linePath} fill="none" stroke="#2A4E3F" strokeWidth="2.2" strokeLinecap="round" />
 
                           {/* Data Points */}
                           {points.map((pt, idx) => (
@@ -628,7 +628,7 @@ export default function AdminDashboard() {
                               cx={pt.x}
                               cy={pt.y}
                               r="3"
-                              className="fill-[#5C1A24] stroke-white stroke-2 hover:r-4 transition-all duration-300 cursor-pointer"
+                              className="fill-[#2A4E3F] stroke-white stroke-2 hover:r-4 transition-all duration-300 cursor-pointer"
                             />
                           ))}
                         </svg>
