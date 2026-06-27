@@ -423,12 +423,12 @@ export default function HotelUI() {
                 Memorable
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-white leading-[1.15] tracking-tight">
-                Hotels for <br />
+                ℍ𝕆𝕋𝔼𝕃 for <br />
                 moments <span className="font-script text-brand-gold font-semibold text-4xl sm:text-5xl lg:text-6xl inline-block mx-1">Rich</span> <br />
                 in emotions
               </h1>
               <p className="text-stone-200 text-2xl sm:text-3xl md:text-4xl tracking-wide mt-6 font-script">
-                Book now and get the best prices at The Corporate House
+                Book now and get the best prices at ℍ𝕆𝕋𝔼𝕃 The Corporate House
               </p>
             </div>
 
@@ -603,7 +603,7 @@ export default function HotelUI() {
             titleComponent={
               <div className="mb-12">
                 <span className="text-lg uppercase tracking-[0.25em] text-[#FFC72C] font-semibold">Exquisite Collection</span>
-                <h3 className="text-3xl md:text-5xl font-serif text-black mt-2">Resort Artistry & Spaces</h3>
+                <h3 className="text-3xl md:text-5xl font-serif text-black mt-2"> Artistry & Spaces</h3>
               </div>
             }
           >
@@ -1097,7 +1097,7 @@ export default function HotelUI() {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
               <span className="text-2xl font-serif font-bold tracking-wide text-white">
-                The Corporate House
+                ℍ𝕆𝕋𝔼𝕃 The Corporate House
               </span>
               <span className="text-[9px] uppercase tracking-[0.25em] text-[#A5B3AC] block mt-1">
                 HOTEL & WORKSPACE
@@ -1131,7 +1131,7 @@ export default function HotelUI() {
             </div>
           </div>
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-8 border-t border-[#2A4E3F]/20 flex flex-col md:flex-row justify-between text-[#A5B3AC] text-xs font-light">
-            <span>© 2026 The Corporate House. All rights reserved.</span>
+            <span>© 2026 ℍ𝕆𝕋𝔼𝕃 The Corporate House. All rights reserved.</span>
             <span className="hover:text-white cursor-pointer transition-colors mt-2 md:mt-0">Privacy Policy • Terms of Service</span>
           </div>
         </footer>

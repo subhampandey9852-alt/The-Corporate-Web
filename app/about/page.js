@@ -69,7 +69,7 @@ function About() {
         </h1>
         <div className="w-12 h-0.5 bg-brand-gold mx-auto"></div>
         <p className="text-black font-normal text-2xl md:text-3xl font-script leading-loose">
-          Founded in 2012, The Corporate House was built with a single vision: to integrate modern comfort with world-class hospitality. Situated along the coast, it stands as a premium location for leisure stays, coastal escapes, and luxury lodging.
+          ℍ𝕆𝕋𝔼𝕃 The Corporate House was built with a single vision: to integrate modern comfort with world-class hospitality. Situated along the coast, it stands as a premium location for leisure stays, coastal escapes, and luxury lodging.
         </p>
       </section>
 
@@ -88,7 +88,7 @@ function About() {
             A Sanctuary of Quietude
           </h2>
           <p className="text-black text-sm font-bold leading-relaxed">
-            Every room at The Corporate House is crafted to optimize guest rejuvenation and relaxation, featuring smart automation, premium bedding, and natural light. We offer standard-setting amenities and dining menus to make sure your stay is seamless and rewarding.
+            Every room at ℍ𝕆𝕋𝔼𝕃 The Corporate House is crafted to optimize guest rejuvenation and relaxation, featuring smart automation, premium bedding, and natural light. We offer standard-setting amenities and dining menus to make sure your stay is seamless and rewarding.
           </p>
           <div className="grid grid-cols-2 gap-6 pt-4">
             <div className="flex items-center gap-3">
@@ -122,7 +122,7 @@ function About() {
           <h3 className="text-xl md:text-2xl font-serif font-light text-black">
             Guest Stay Request Planner
           </h3>
-          <p className="text-slate-400 text-xs font-light max-w-sm mx-auto">
+          <p className="text-black text-xs font-bold max-w-sm mx-auto">
             Design your ideal holiday itinerary. Add requests or booking needs below, and our concierges will curate them instantly.
           </p>
         </div>

@@ -57,7 +57,7 @@ export default function MyBookingsPage() {
 
   return (
     <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} text-slate-800 min-h-screen bg-[#afb5c7] font-sans py-32 px-6 sm:px-12 lg:px-16 max-w-7xl mx-auto space-y-16 relative overflow-hidden`}>
-      
+
       {/* Background Ambient Glows */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-emerald-600/10 blur-[120px]"></div>
@@ -68,7 +68,7 @@ export default function MyBookingsPage() {
       <section className="text-center max-w-4xl mx-auto space-y-6 pt-12 relative z-10">
         <span className="text-sm md:text-base uppercase tracking-[0.3em] text-[#2A4E3F] font-bold flex items-center justify-center gap-2">
           <Sparkles className="w-5 h-5 text-brand-green animate-pulse" />
-          The Corporate House Stays
+          ℍ𝕆𝕋𝔼𝕃 The Corporate House Stays
         </span>
         <h1 className="text-5xl md:text-7xl font-serif font-light text-slate-900 tracking-tight leading-none">
           Manage Your Bookings
@@ -154,13 +154,12 @@ export default function MyBookingsPage() {
                           <h3 className="text-2xl font-serif font-bold text-slate-900 leading-tight hover:text-brand-green transition-colors">{booking.roomName}</h3>
                         </div>
                         <span
-                          className={`px-4 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider border shrink-0 ${
-                            isConfirmed
+                          className={`px-4 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider border shrink-0 ${isConfirmed
                               ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                               : isCancelled
                                 ? "bg-rose-50 text-rose-700 border-rose-200"
                                 : "bg-amber-55 text-amber-700 border-amber-200"
-                          }`}
+                            }`}
                         >
                           {booking.status}
                         </span>

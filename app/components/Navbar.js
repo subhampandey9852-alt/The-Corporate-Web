@@ -43,7 +43,7 @@ function Navbar() {
         : "bg-brand-charcoal/70 backdrop-blur-md border-b border-white/5 py-4"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="max-w-8xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo / Brand */}
           <div className="flex items-center gap-3 h-full">
@@ -53,7 +53,7 @@ function Navbar() {
               className="h-11 sm:h-16 md:h-24 w-auto object-contain brightness-150 contrast-125 drop-shadow-md transition-transform duration-500 hover:scale-105"
             />
             <span className="font-serif font-bold text-[10px] xs:text-xs sm:text-base md:text-xl text-white tracking-wider leading-none uppercase">
-              the <span className="text-[#FFC72C]">corporate</span> house
+              ℍ𝕆𝕋𝔼𝕃 the <span className="text-[#FFC72C]">corporate</span> house
             </span>
           </div>
 

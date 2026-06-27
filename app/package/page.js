@@ -176,7 +176,7 @@ function PackagePage() {
       <section className="text-center max-w-3xl mx-auto space-y-4 pt-8">
         <span className="text-sm uppercase tracking-[0.25em] text-[#FFC72C] font-semibold flex items-center justify-center gap-1.5">
           <Sparkles className="w-4 h-4 text-green-800" />
-          The Corporate House Packages
+          ℍ𝕆𝕋𝔼𝕃 The Corporate House Packages
         </span>
         <h1 className="text-4xl md:text-5xl font-serif font-light text-black">
           Our Rooms & Services
