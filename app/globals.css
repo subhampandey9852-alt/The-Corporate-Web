@@ -45,6 +45,16 @@ button {
   cursor: pointer;
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
 /* Custom Premium Utilities */
 .bg-card-gradient {
   background: radial-gradient(circle, #243B6B 0%, #1A0D10 100%);

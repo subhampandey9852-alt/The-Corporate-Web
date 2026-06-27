@@ -174,7 +174,7 @@ function PackagePage() {
 
       {/* Page Header */}
       <section className="text-center max-w-3xl mx-auto space-y-4 pt-8">
-        <span className="text-sm uppercase tracking-[0.25em] text-[#FFC72C] font-semibold flex items-center justify-center gap-1.5">
+        <span className="text-lg uppercase tracking-[0.25em] text-[#FFC72C] font-semibold flex items-center justify-center gap-1.5">
           <Sparkles className="w-4 h-4 text-green-800" />
           ℍ𝕆𝕋𝔼𝕃 The Corporate House Packages
         </span>

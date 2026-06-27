@@ -607,7 +607,7 @@ export default function HotelUI() {
               </div>
             }
           >
-            <div className="w-full h-full bg-gradient-to-br from-[#1E1C1A] via-[#2A4E3F]/85 to-[#1A0D10] p-6 md:p-8 overflow-y-auto grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-8 border border-[#C5A880]/20">
+            <div className="w-full h-full bg-gradient-to-br from-[#1E1C1A] via-[#2A4E3F]/85 to-[#1A0D10] p-6 md:p-8 overflow-y-auto no-scrollbar grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-8 border border-[#C5A880]/20">
               {GALLERY_IMAGES.map((img, idx) => (
                 <div
                   key={idx}
