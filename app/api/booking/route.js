@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getBookings, addBooking, updateBooking } from "../../../lib/db";
+import { getBookings, addBooking, updateBooking, deleteBooking } from "../../../lib/db";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
@@ -103,11 +103,6 @@ export async function POST(req) {
 
 export async function PUT(req) {
   try {
-    const isAdmin = await verifyAdmin();
-    if (!isAdmin) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const updateData = await req.json();
     const { id, status } = updateData;
 
@@ -119,10 +114,40 @@ export async function PUT(req) {
       return NextResponse.json({ error: "Invalid booking status" }, { status: 400 });
     }
 
+    // Only administrators can confirm or set status back to pending
+    if (status !== "Cancelled") {
+      const isAdmin = await verifyAdmin();
+      if (!isAdmin) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+    }
+
     const updatedBooking = await updateBooking(id, { status });
     return NextResponse.json({ success: true, booking: updatedBooking });
   } catch (error) {
     console.error("PUT booking error:", error);
     return NextResponse.json({ error: "Failed to update booking" }, { status: 500 });
+  }
+}
+
+export async function DELETE(req) {
+  try {
+    const isAdmin = await verifyAdmin();
+    if (!isAdmin) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ error: "Booking ID is required" }, { status: 400 });
+    }
+
+    await deleteBooking(id);
+    return NextResponse.json({ success: true, message: "Booking deleted successfully" });
+  } catch (error) {
+    console.error("DELETE booking error:", error);
+    return NextResponse.json({ error: "Failed to delete booking" }, { status: 500 });
   }
 }

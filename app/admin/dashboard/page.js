@@ -130,6 +130,25 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleDeleteBooking = async (id) => {
+    if (!confirm("Are you sure you want to delete this booking record?")) return;
+
+    try {
+      const response = await fetch(`/api/booking?id=${id}`, {
+        method: "DELETE"
+      });
+      const data = await response.json();
+      if (data.success) {
+        // Remove from bookings list
+        setBookings(prev => prev.filter(b => (b.id !== id && b._id !== id)));
+      } else {
+        alert(data.error || "Failed to delete booking.");
+      }
+    } catch (err) {
+      console.error("Failed to delete booking:", err);
+    }
+  };
+
   // Room action handlers
   const handleOpenRoomModal = (mode, room = null) => {
     setModalMode(mode);
@@ -840,9 +859,13 @@ export default function AdminDashboard() {
                                     <XCircle className="w-5 h-5" />
                                   </button>
                                 )}
-                                {booking.status === "Cancelled" && (
-                                  <span className="text-xs text-stone-400 italic">No actions</span>
-                                )}
+                                <button
+                                  onClick={() => handleDeleteBooking(bid)}
+                                  className="p-2 bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 rounded-lg transition-colors cursor-pointer"
+                                  title="Delete Booking"
+                                >
+                                  <Trash2 className="w-5 h-5" />
+                                </button>
                               </td>
                             </tr>
                           );

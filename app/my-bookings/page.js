@@ -55,6 +55,29 @@ export default function MyBookingsPage() {
     }
   };
 
+  const handleCancelBooking = async (id) => {
+    if (!confirm("Are you sure you want to cancel this booking?")) return;
+
+    try {
+      const response = await fetch("/api/booking", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status: "Cancelled" })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        // Update local state
+        setBookings(prev => prev.map(b => (b.id === id || b._id === id) ? { ...b, status: "Cancelled" } : b));
+        alert("Your booking has been cancelled successfully.");
+      } else {
+        alert(data.error || "Failed to cancel booking.");
+      }
+    } catch (error) {
+      console.error("Cancel booking error:", error);
+      alert("Failed to cancel booking. Please try again.");
+    }
+  };
+
   return (
     <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} text-slate-800 min-h-screen bg-[#afb5c7] font-sans py-32 px-6 sm:px-12 lg:px-16 max-w-7xl mx-auto space-y-16 relative overflow-hidden`}>
 
@@ -229,6 +252,18 @@ export default function MyBookingsPage() {
                         <span className="text-2xl font-serif font-bold text-emerald-600">₹{booking.totalPrice?.toLocaleString()}</span>
                       </div>
                     </div>
+
+                    {!isCancelled && (
+                      <div className="mt-6 pt-6 border-t border-slate-100 flex justify-end">
+                        <button
+                          onClick={() => handleCancelBooking(booking._id || booking.id)}
+                          className="px-5 py-3 rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer hover:shadow-lg hover:shadow-rose-100/50 active:scale-95"
+                        >
+                          <XCircle className="w-4.5 h-4.5" />
+                          Cancel My Booking
+                        </button>
+                      </div>
+                    )}
                   </div>
                 );
               })}
