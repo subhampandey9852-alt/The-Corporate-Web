@@ -29,7 +29,6 @@ import {
   Clock
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 // Hotel Rooms Mock Data
 const ROOMS = [
@@ -166,17 +165,49 @@ const FOOD_ITEMS = [
     category: "Signature Entrées",
     price: 1850,
     rating: 4.9,
-    image: "/photos/food_pasta.png",
+    image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=600&q=80",
     description: "House-made fettuccine tossed in a rich, creamy parmigiano-reggiano and butter emulsion, generously topped with freshly shaved Italian black winter truffles and micro-greens.",
+    tags: ["Chef Recommended", "Vegetarian"]
   },
   {
-    id: "pan-salmon",
-    name: "Pan-Seared Salmon",
-    category: "Signature Seafood",
-    price: 2200,
+    id: "royal-butter-chicken",
+    name: "Royal Butter Chicken",
+    category: "Signature Entrées",
+    price: 1650,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80",
+    description: "Tender boneless chicken roasted in our clay tandoor, simmered in a rich, velvety tomato and cashew nut gravy, finished with fresh cream and dried fenugreek leaves.",
+    tags: ["Palace Classic", "Gluten Free"]
+  },
+  {
+    id: "wagyu-steak",
+    name: "A5 Wagyu Ribeye",
+    category: "Palace Specials",
+    price: 6450,
+    rating: 5.0,
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+    description: "Highly marbled Japanese A5 Wagyu ribeye seared on volcanic stones, served with roasted garlic puree, wild forest chanterelles, and a delicate 24-karat edible gold leaf garnish.",
+    tags: ["Ultra Premium", "Best Seller"]
+  },
+  {
+    id: "paneer-butter-masala",
+    name: "Paneer Butter Masala",
+    category: "Signature Entrées",
+    price: 1450,
     rating: 4.8,
-    image: "/photos/food_salmon.png",
-    description: "Crispy-skinned Atlantic salmon fillet resting on a bed of buttered asparagus spears, accompanied by a velvety citrus saffron reduction and fresh garden herbs.",
+    image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80",
+    description: "Fresh cubes of cottage cheese cooked in a smooth, mildly spiced creamy tomato gravy, delicately seasoned with cardamom and garnishing of fresh coriander.",
+    tags: ["Vegetarian", "Best Seller"]
+  },
+  {
+    id: "saffron-kulfi",
+    name: "Imperial Saffron Kulfi",
+    category: "Decadent Desserts",
+    price: 1100,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80",
+    description: "Traditional slow-churned Indian milk dessert infused with finest Kashmiri saffron, pistachios, and green cardamom, adorned with delicate edible silver foil (varq).",
+    tags: ["Royal Sweet"]
   },
   {
     id: "chocolate-souffle",
@@ -184,8 +215,9 @@ const FOOD_ITEMS = [
     category: "Decadent Desserts",
     price: 950,
     rating: 4.9,
-    image: "/photos/food_souffle.png",
+    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80",
     description: "Classic French soufflé baked to light, airy perfection with a decadent molten dark chocolate core, dusted with powdered sugar and served alongside Madagascar vanilla bean ice cream.",
+    tags: ["Classic French", "Baked Fresh"]
   }
 ];
 
@@ -202,12 +234,12 @@ const GALLERY_IMAGES = [
 export default function HotelUI() {
   // Navigation & Category states
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [isParkingHovered, setIsParkingHovered] = useState(false);
-  const [isWaitingHovered, setIsWaitingHovered] = useState(false);
+  const [selectedFoodCategory, setSelectedFoodCategory] = useState("All");
   const [roomsList, setRoomsList] = useState(ROOMS);
   const [currentImage, setCurrentImage] = useState(0);
   const router = useRouter();
   const [showGallery, setShowGallery] = useState(false);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
   const [searchParams, setSearchParams] = useState({
     checkIn: "2026-06-20",
@@ -218,6 +250,7 @@ export default function HotelUI() {
 
   // Fetch rooms from API
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
     fetch("/api/rooms")
       .then((res) => res.json())
@@ -481,156 +514,86 @@ export default function HotelUI() {
             </div>
           </div>
 
-          {/* Right Column: Hero Image as a Card */}
-          {/* <div className="w-full md:w-[55%] flex items-center justify-center p-4 md:p-6 lg:p-8 bg-transparent relative z-10">
-            <div className="w-full max-w-2xl h-[500px] md:h-[600px] relative rounded-2xl overflow-hidden border border-[#E5E2DA] shadow-2xl group"
-              onMouseEnter={() => setShowGallery(true)}
-              onMouseLeave={() => setShowGallery(false)}
-            >
-              <style>{`
-              .gallery-item {
-                position: absolute;
-                width: 42%;
-                height: 42%;
-                object-fit: cover;
-                border-radius: 0.75rem;
-                border: 4px solid white;
-                box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-                opacity: 0;
-                z-index: 20;
-                transition: opacity 1.2s ease,
-                            transform 1.5s cubic-bezier(0.22, 1, 0.36, 1),
-                            top 1.5s cubic-bezier(0.22, 1, 0.36, 1),
-                            left 1.5s cubic-bezier(0.22, 1, 0.36, 1),
-                            right 1.5s cubic-bezier(0.22, 1, 0.36, 1),
-                            bottom 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-              }
-              .gallery-0 {
-                top: 30%;
-                left: 30%;
-                transform: rotate(0deg) scale(0.5);
-              }
-              .gallery-1 {
-                top: 30%;
-                right: 30%;
-                transform: rotate(0deg) scale(0.5);
-              }
-              .gallery-2 {
-                bottom: 30%;
-                left: 30%;
-                transform: rotate(0deg) scale(0.5);
-              }
-              .gallery-3 {
-                bottom: 30%;
-                right: 30%;
-                transform: rotate(0deg) scale(0.5);
-              }
-
-              .group:hover .gallery-item {
-                opacity: 1;
-                
-              }
-
-              .group:hover .gallery-0 {
-                top: 8%;
-                left: 8%;
-                transform: rotate(6deg) scale(1);
-                  transition-delay: 120ms;
-              }
-              .group:hover .gallery-1 {
-                top: 8%;
-                right: 8%;
-                transform: rotate(10deg) scale(1);
-                  transition-delay: 120ms;
-              }
-              .group:hover .gallery-2 {
-                bottom: 8%;
-                left: 8%;
-                transform: rotate(-6deg) scale(1);
-              }
-              .group:hover .gallery-3 {
-                bottom: 8%;
-                right: 8%;
-                transform: rotate(8deg) scale(1);
-              }
-
-              .gallery-item:hover {
-                transform: rotate(0deg) scale(1.18) !important;
-                box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
-                z-index: 50 !important;
-                cursor: pointer;
-                transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-              }
-            `}</style>
-              <img
-                src="/photos/img19.jpg"
-                alt="Hotel Corporate Room"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-              />
-              <div className={`absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-xs transition-all duration-500 z-10 ${showGallery ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-                }`}>
-                {roomsList.slice(0, 4).map((room, index) => (
-                  <img
-                    key={room.id || room._id}
-                    src={room.image}
-                    alt={room.name}
-                    className={`gallery-item gallery-${index}`}
-                  />
-                ))}
-              </div>
-              <div className="absolute inset-0 bg-black/5"></div>
-            </div>
-          </div> */}
+          
         </section>
 
         {/* INTRODUCTION SECTION */}
-        <section className="py-16 md:py-24 px-6 sm:px-12 lg:px-16 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start mb-12 md:mb-20">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-serif font-light text-black leading-tight max-w-md">
-                Here, local talents come together.
-              </h2>
-            </div>
-            <div>
-              <p className="text-black text-xl sm:text-2xl md:text-4xl font-script leading-relaxed mt-2 md:mt-0 max-w-lg">
-                We let ourselves be inspired by the rich history as well as by contemporary artists of the city. For in the 21st century the city has so much more to offer than just medieval heritage.
-              </p>
-            </div>
+       
+
+        {/* Gallery Section - Full-Width Carousel */}
+        <section className="w-full py-2 bg-transparent bg-[#E8F2F7]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 text-center mb-10">
+            <span className="text-[#C5A880] text-sm md:text-base font-bold uppercase tracking-[0.25em]">Exquisite Collection</span>
+            <h3 className="text-3xl md:text-5xl font-serif text-black mt-3">Artistry & Spaces</h3>
+            <div className="w-12 h-0.5 bg-[#C5A880] mx-auto mt-4"></div>
           </div>
 
-          {/* 3D Scroll Showcase Wrap for the dining image gallery */}
-          <ContainerScroll
-            titleComponent={
-              <div className="mb-12">
-                <span className="text-lg uppercase tracking-[0.25em] text-[#FFC72C] font-semibold">Exquisite Collection</span>
-                <h3 className="text-3xl md:text-5xl font-serif text-black mt-2"> Artistry & Spaces</h3>
-              </div>
-            }
-          >
-            <div className="w-full h-full bg-gradient-to-br from-[#1E1C1A] via-[#2A4E3F]/85 to-[#1A0D10] p-6 md:p-8 overflow-y-auto no-scrollbar grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-8 border border-[#C5A880]/20">
-              {GALLERY_IMAGES.map((img, idx) => (
-                <div
-                  key={idx}
-                  className="group relative overflow-hidden rounded-2xl aspect-video md:aspect-auto md:h-44 cursor-pointer border border-[#C5A880]/20 shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(197,168,128,0.25)] hover:border-[#C5A880]/70"
-                >
-                  <img
-                    src={img.src}
-                    alt={img.title}
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h4 className="text-[#FFC72C] text-[10px] md:text-xs font-serif font-bold tracking-wide uppercase">{img.title}</h4>
-                    <p className="text-white/85 text-[8px] md:text-[10px] font-sans font-light mt-1 leading-relaxed">{img.desc}</p>
-                  </div>
+          {/* Slider Container - Full bleed edge-to-edge */}
+          <div className="relative mx-auto w-full max-w-[1580px] h-[320px] sm:h-[450px] md:h-[580px] overflow-hidden group bg-stone-900 shadow-2xl sm:rounded-2xl">
+            {/* Slides */}
+            {GALLERY_IMAGES.map((img, idx) => (
+              <div
+                key={idx}
+                className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${
+                  idx === activeSlideIndex ? "opacity-100 scale-100 z-10" : "opacity-0 scale-95 z-0 pointer-events-none"
+                }`}
+              >
+                <img
+                  src={img.src}
+                  alt={img.title}
+                  className="object-cover w-full h-full transform transition-transform duration-[8000ms] ease-out group-hover:scale-105"
+                />
+                {/* Subtle vignette/shading overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+                
+                {/* Glassmorphic Caption Card */}
+                <div className={`absolute bottom-4 left-4 right-4 md:bottom-12 md:left-16 md:right-auto md:max-w-md bg-black/50 backdrop-blur-md p-3 sm:p-5 md:p-6 rounded-lg sm:rounded-2xl border border-white/10 text-white transition-all duration-700 transform z-20 ${
+                  idx === activeSlideIndex ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                }`}>
+                  <span className="text-[9px] sm:text-xs uppercase tracking-widest text-[#FFC72C] font-semibold">Slide {idx + 1} of {GALLERY_IMAGES.length}</span>
+                  <h4 className="text-sm sm:text-lg md:text-2xl font-serif font-bold mt-0.5 sm:mt-1 text-[#FFC72C]">{img.title}</h4>
+                  <p className="text-white/80 text-[10px] sm:text-xs md:text-sm font-sans font-light mt-0.5 sm:mt-2 leading-relaxed">{img.desc}</p>
                 </div>
+              </div>
+            ))}
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => setActiveSlideIndex((prev) => (prev === 0 ? GALLERY_IMAGES.length - 1 : prev - 1))}
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 rounded-full bg-black/40 hover:bg-black/70 text-white border border-white/15 transition-all duration-300 transform scale-75 sm:scale-100 hover:scale-105 active:scale-95 cursor-pointer opacity-80 hover:opacity-100"
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <button
+              onClick={() => setActiveSlideIndex((prev) => (prev === GALLERY_IMAGES.length - 1 ? 0 : prev + 1))}
+              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 rounded-full bg-black/40 hover:bg-black/70 text-white border border-white/15 transition-all duration-300 transform scale-75 sm:scale-100 hover:scale-105 active:scale-95 cursor-pointer opacity-80 hover:opacity-100"
+              aria-label="Next image"
+            >
+              <ChevronRight size={24} />
+            </button>
+
+            {/* Indicators / Dots */}
+            <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-12 md:right-16 z-30 flex items-center gap-2">
+              {GALLERY_IMAGES.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveSlideIndex(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    idx === activeSlideIndex ? "w-6 bg-[#FFC72C]" : "w-1.5 bg-white/40 hover:bg-white/70"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  style={{ transitionProperty: "all" }}
+                />
               ))}
             </div>
-          </ContainerScroll>
+          </div>
         </section>
 
         {/* ROOMS CATALOG */}
-        <section id="rooms" className="py-20 color-brand-cream border-y border-[#E5E2DA]">
-          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+        <section id="rooms" className="py-20 bg-[#E8F2F7] border-y border-[#E5E2DA]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 ">
 
             <div className="text-center mb-16">
               <span className="text-2xl uppercase tracking-[0.25em] text-brand-green font-bold">Perfect Sanctuaries</span>
@@ -645,7 +608,7 @@ export default function HotelUI() {
               {filteredRooms.map((room) => (
                 <div
                   key={room.id || room._id}
-                  className="group bg-card-gradient rounded-xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] hover:bg-wooden"
+                  className="room-card group bg-card-gradient rounded-xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] hover:bg-wooden"
                 >
                   {/* Image Wrap */}
                   <div className="relative h-56 overflow-hidden">
@@ -725,7 +688,7 @@ export default function HotelUI() {
                 return (
                   <div
                     key={idx}
-                    className="group bg-card-gradient border border-[#E5E2DA]/20 p-8 rounded-xl hover:bg-wooden -translate-y-0 hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] cursor-pointer"
+                    className="disable-shine group bg-card-gradient border border-[#E5E2DA]/20 p-8 rounded-xl hover:bg-wooden -translate-y-0 hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] cursor-pointer"
                   >
                     <div className="w-12 h-12 rounded-lg bg-white/10 text-white flex items-center justify-center mb-5 group-hover:bg-gradient-to-r group-hover:from-brand-gold-dark group-hover:to-brand-gold group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm group-hover:shadow-brand-gold/30">
                       <Icon className="w-5 h-5" />
@@ -746,19 +709,42 @@ export default function HotelUI() {
         {/* GOURMET FOOD SECTION */}
         <section id="gourmet-food" className="py-20 color-brand-cream border-t border-[#E5E2DA] relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 relative z-10">
-            <div className="text-center mb-16">
-              <span className="text-xs uppercase tracking-[0.25em] text-brand-green font-bold block">Gastronomic Artistry</span>
-              <h2 className="text-3xl sm:text-4xl font-serif font-light text-black mt-3">
+            <div className="text-center mb-12">
+              <span className="text-xs sm:text-sm uppercase tracking-[0.35em] text-[#C5A880] font-extrabold block">Gastronomic Artistry</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-black mt-3 italic">
                 Signature Culinary Creations
               </h2>
-              <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent mx-auto mt-4"></div>
+              <p className="text-stone-600 text-sm sm:text-base font-light mt-4 max-w-2xl mx-auto leading-relaxed">
+                Indulge in award-winning dining curated by our master chefs, featuring the finest seasonal ingredients and artisanal presentation.
+              </p>
+              <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-[#C5A880] to-transparent mx-auto mt-6"></div>
             </div>
 
+            {/* Menu Category Filter Tabs */}
+            <div className="flex flex-wrap justify-center gap-3 mb-14">
+              {["All", "Signature Entrées", "Decadent Desserts", "Palace Specials"].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedFoodCategory(cat)}
+                  className={`px-6 py-3 rounded-full text-xs sm:text-sm font-serif font-bold tracking-widest transition-all duration-300 border ${
+                    selectedFoodCategory === cat
+                      ? "bg-gradient-to-r from-[#9C8567] to-[#C5A880] text-white border-transparent shadow-lg shadow-brand-gold/20 scale-105"
+                      : "bg-white text-brand-green border-brand-green/10 hover:bg-brand-green/5 hover:border-brand-green/20"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Food Items Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {FOOD_ITEMS.map((item) => (
+              {FOOD_ITEMS.filter(
+                (item) => selectedFoodCategory === "All" || item.category === selectedFoodCategory
+              ).map((item) => (
                 <div
                   key={item.id}
-                  className="group bg-card-gradient border border-[#E5E2DA]/20 rounded-xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] hover:bg-wooden"
+                  className="disable-shine group bg-card-gradient border border-[#E5E2DA]/20 rounded-xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)] hover:bg-wooden"
                 >
                   {/* Image Wrap */}
                   <div className="relative h-64 overflow-hidden">
@@ -767,7 +753,7 @@ export default function HotelUI() {
                       alt={item.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-85"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80"></div>
                     <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold text-brand-green shadow-sm">
                       {item.category}
                     </span>
@@ -780,17 +766,42 @@ export default function HotelUI() {
                   {/* Content */}
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
-                      <h3 className="text-xl font-bold font-serif text-white transition-colors mb-2">
-                        {item.name}
-                      </h3>
-                      <p className="text-white/85 text-xs font-normal leading-relaxed transition-colors duration-300">
+                      <div className="flex justify-between items-baseline gap-2 mb-2">
+                        <h3 className="text-lg font-bold font-serif text-white transition-colors">
+                          {item.name}
+                        </h3>
+                        <span className="text-base font-serif font-bold text-[#FFC72C] shrink-0">
+                          ₹{item.price.toLocaleString("en-IN")}
+                        </span>
+                      </div>
+                      
+                      <p className="text-white/85 text-xs font-normal leading-relaxed mb-4 line-clamp-3">
                         {item.description}
                       </p>
+
+                      {/* Tag badges */}
+                      {item.tags && (
+                        <div className="flex flex-wrap gap-1.5 mt-2">
+                          {item.tags.map((tag, i) => (
+                            <span key={i} className="text-[9px] font-sans font-medium px-2 py-0.5 rounded bg-white/10 text-stone-200 border border-white/5">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-center">
+                      <span className="text-[10px] text-[#FFC72C] uppercase tracking-widest font-sans font-bold">★ Freshly Prepared</span>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Bottom Reservation Callout */}
+         
+
           </div>
         </section>
 
@@ -800,21 +811,21 @@ export default function HotelUI() {
 
             {/* Centered Headers */}
             <div className="text-center mb-16">
-              <span className="text-xs uppercase tracking-[0.25em] text-[#5C1A24] font-bold block">Celebrations & Galas</span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-light text-[#1E1C1A] mt-3">
+              <span className="text-xs sm:text-sm uppercase tracking-[0.35em] text-[#C5A880] font-extrabold block">Celebrations & Galas</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-[#1E1C1A] mt-3 italic">
                 Grand Venues & Royal Occasions
               </h2>
-              <p className="text-brand-green text-sm font-light mt-2 max-w-2xl mx-auto">
+              <p className="text-stone-600 text-sm sm:text-base font-light mt-4 max-w-2xl mx-auto leading-relaxed">
                 Host your monumental celebrations, weddings, milestone birthdays, or elite corporate gatherings in our beautifully styled palaces.
               </p>
-              <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#C5A880] to-transparent mx-auto mt-4"></div>
+              <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-[#C5A880] to-transparent mx-auto mt-6"></div>
             </div>
 
             {/* Asymmetric 3-Card Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
 
               {/* Card 1: Weddings */}
-              <div className="group relative rounded-2xl overflow-hidden shadow-2xl h-[420px] border border-[#C5A880]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[#C5A880]/15">
+              <div className="disable-shine group relative rounded-2xl overflow-hidden shadow-2xl h-[420px] border border-[#C5A880]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[#C5A880]/15">
                 <img
                   src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80"
                   alt="Royal Weddings"
@@ -831,7 +842,7 @@ export default function HotelUI() {
               </div>
 
               {/* Card 2: Birthdays */}
-              <div className="group relative rounded-2xl overflow-hidden shadow-2xl h-[420px] border border-[#C5A880]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[#C5A880]/15">
+              <div className="disable-shine group relative rounded-2xl overflow-hidden shadow-2xl h-[420px] border border-[#C5A880]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[#C5A880]/15">
                 <img
                   src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80"
                   alt="Milestone Birthdays"
@@ -848,7 +859,7 @@ export default function HotelUI() {
               </div>
 
               {/* Card 3: Corporate Banquets */}
-              <div className="group relative rounded-2xl overflow-hidden shadow-2xl h-[420px] border border-[#C5A880]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[#C5A880]/15">
+              <div className="disable-shine group relative rounded-2xl overflow-hidden shadow-2xl h-[420px] border border-[#C5A880]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[#C5A880]/15">
                 <img
                   src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80"
                   alt="Palace Banquets"
@@ -863,34 +874,36 @@ export default function HotelUI() {
                   </p>
                 </div>
               </div>
-
             </div>
+              
+              {/* Event Inquiry Form Desk */}
+            <div className="max-w-4xl mx-auto p-8 bg-card-gradient from-[#1F3A2E] to-[#12241C] border border-[#C5A880]/30 rounded-3xl shadow-2xl text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#C5A880]/5 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
 
-            {/* Event Inquiry Form Desk */}
-            <div className="max-w-4xl mx-auto p-8 bg-[#1A0D10] border border-[#C5A880]/30 rounded-2xl shadow-2xl text-white">
               {!eventSubmitted ? (
-                <form onSubmit={handleEventInquiry} className="space-y-6">
-                  <div className="text-center pb-4 border-b border-[#C5A880]/20">
-                    <h4 className="text-xs uppercase tracking-widest text-[#C5A880] font-bold">
+                <form onSubmit={handleEventInquiry} className="space-y-8 relative z-10">
+                  <div className="text-center pb-6 border-b border-[#C5A880]/20">
+                    <h4 className="text-sm uppercase tracking-[0.2em] text-[#C5A880] font-bold">
                       Connect with our Palace Event Planner
                     </h4>
-                    <p className="text-[10px] text-stone-400 mt-1 font-light">Custom tailor your catering, guest counts, and banquet settings.</p>
+                    <p className="text-xs text-stone-300 mt-2 font-light">Custom tailor your catering, guest counts, and banquet settings.</p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Your Name</label>
+                  <div className="grid grid-cols-1 md:grid-cols-5 gap-5 items-end">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] uppercase tracking-wider text-stone-300 font-bold">Your Name</label>
                       <input
                         type="text"
                         required
                         placeholder="Enter name"
                         value={eventName}
                         onChange={(e) => setEventName(e.target.value)}
-                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#C5A880] transition-colors"
+                        className="bg-[#172D24] border border-[#C5A880]/30 rounded-xl px-4 py-3 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880]/20 transition-all"
                       />
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Contact Phone</label>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] uppercase tracking-wider text-stone-300 font-bold">Contact Phone</label>
                       <input
                         type="tel"
                         required
@@ -898,25 +911,25 @@ export default function HotelUI() {
                         placeholder="Phone number"
                         value={eventPhone}
                         onChange={(e) => setEventPhone(e.target.value)}
-                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2.5 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#C5A880] transition-colors"
+                        className="bg-[#172D24] border border-[#C5A880]/30 rounded-xl px-4 py-3 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880]/20 transition-all"
                       />
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Event Date</label>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] uppercase tracking-wider text-stone-300 font-bold">Event Date</label>
                       <input
                         type="date"
                         required
                         value={eventDate}
                         onChange={(e) => setEventDate(e.target.value)}
-                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2 text-xs text-white focus:outline-none focus:border-[#C5A880] transition-colors cursor-pointer text-stone-300"
+                        className="bg-[#172D24] border border-[#C5A880]/30 rounded-xl px-4 py-2.5 text-xs text-stone-300 focus:outline-none focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880]/20 transition-all cursor-pointer"
                       />
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Event Type</label>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] uppercase tracking-wider text-stone-300 font-bold">Event Type</label>
                       <select
                         value={eventType}
                         onChange={(e) => setEventType(e.target.value)}
-                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#C5A880] transition-colors cursor-pointer text-stone-300"
+                        className="bg-[#172D24] border border-[#C5A880]/30 rounded-xl px-4 py-3 text-xs text-stone-300 focus:outline-none focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880]/20 transition-all cursor-pointer"
                       >
                         <option value="Wedding Reception">Wedding Ceremony</option>
                         <option value="Birthday & Family Function">Birthday Celebration</option>
@@ -924,12 +937,12 @@ export default function HotelUI() {
                         <option value="Conferences & Seminars">Seminar/Conference</option>
                       </select>
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[9px] uppercase tracking-wider text-stone-400 font-bold">Estimated Guests</label>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] uppercase tracking-wider text-stone-300 font-bold">Estimated Guests</label>
                       <select
                         value={eventGuests}
                         onChange={(e) => setEventGuests(e.target.value)}
-                        className="bg-[#241A1C] border border-[#C5A880]/25 rounded-md px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#C5A880] transition-colors cursor-pointer text-stone-300"
+                        className="bg-[#172D24] border border-[#C5A880]/30 rounded-xl px-4 py-3 text-xs text-stone-300 focus:outline-none focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880]/20 transition-all cursor-pointer"
                       >
                         <option value="0-50">0 - 50 Guests</option>
                         <option value="50-100">50 - 100 Guests</option>
@@ -941,25 +954,25 @@ export default function HotelUI() {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-[#C5A880] hover:bg-[#B59870] text-[#1E1C1A] text-xs font-bold uppercase tracking-wider rounded-md transition-all duration-300 shadow-md hover:shadow-[#C5A880]/25"
+                    className="w-full py-4 bg-gradient-to-r from-[#9C8567] via-[#C5A880] to-[#9C8567] hover:brightness-110 text-[#1E1C1A] text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg hover:shadow-[#C5A880]/20 active:scale-[0.99]"
                   >
                     Send Inquiries to Palace Concierge
                   </button>
                 </form>
               ) : (
-                <div className="text-center py-6 space-y-4">
-                  <div className="w-12 h-12 rounded-full bg-[#C5A880]/15 text-[#C5A880] flex items-center justify-center mx-auto border border-[#C5A880]/30">
-                    <Check className="w-6 h-6" />
+                <div className="text-center py-8 space-y-6 relative z-10">
+                  <div className="w-16 h-16 rounded-full bg-[#C5A880]/15 text-[#C5A880] flex items-center justify-center mx-auto border border-[#C5A880]/30 shadow-inner">
+                    <Check className="w-8 h-8" />
                   </div>
-                  <div className="space-y-1.5">
-                    <h4 className="font-serif font-bold text-[#C5A880] text-base font-semibold">Inquiry Submitted Successfully!</h4>
-                    <p className="text-xs text-stone-300 max-w-md mx-auto leading-relaxed">
-                      Thank you, {eventName}. Your request for {eventType} ({eventGuests} guests) is registered. A coordinator will call you back shortly at {eventPhone}.
+                  <div className="space-y-2">
+                    <h4 className="font-serif text-xl font-bold text-[#C5A880] tracking-wide">Inquiry Submitted Successfully!</h4>
+                    <p className="text-sm text-stone-300 max-w-md mx-auto leading-relaxed font-light">
+                      Thank you, <span className="font-semibold text-white">{eventName}</span>. Your request for {eventType} ({eventGuests} guests) is registered. A coordinator will call you back shortly at <span className="font-semibold text-white">{eventPhone}</span>.
                     </p>
                   </div>
                   <button
                     onClick={() => setEventSubmitted(false)}
-                    className="text-[10px] uppercase font-bold tracking-widest text-[#C5A880] hover:underline"
+                    className="text-xs uppercase font-bold tracking-widest text-[#C5A880] hover:text-[#e5ccaa] transition-colors hover:underline"
                   >
                     Submit Another Inquiry
                   </button>
@@ -971,22 +984,20 @@ export default function HotelUI() {
         </section>
 
         {/* SECURE PARKING SECTION */}
-        <section id="parking" className="py-24 bg-gradient-to-b from-[#FAF8F5] to-[#F5EFEB] border-t border-[#C5A880]/30">
+        <section id="parking" className="py-24 bg-[#E8F2F7] border-t border-[#C5A880]/30">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-            <div className={`flex flex-col lg:flex-row items-center w-full lg:h-[550px] transition-all duration-700 ease-in-out ${isParkingHovered ? "gap-0" : "gap-16"}`}>
+            <div className="flex flex-col lg:flex-row items-center w-full gap-12 md:gap-16">
 
-              {/* Left Column: Parking Image */}
-              <div
-                onMouseEnter={() => setIsParkingHovered(true)}
-                onMouseLeave={() => setIsParkingHovered(false)}
-                className={`relative h-[280px] sm:h-[400px] lg:h-[550px] shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer ${isParkingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[58%] rounded-2xl"
-                  }`}
-              >
-                <div className={`relative w-full h-full overflow-hidden transition-all duration-700 ease-in-out ${isParkingHovered ? "rounded-[36px]" : "rounded-xl"}`}>
+              {/* Left Column: Parking Image Card */}
+              <div className="relative w-full lg:w-[55%] h-[300px] sm:h-[420px] lg:h-[500px] shadow-2xl group rounded-2xl overflow-hidden border border-[#C5A880]/30 cursor-pointer order-2 lg:order-1">
+                {/* Thin golden outline border overlay for luxury aesthetic */}
+                <div className="absolute inset-4 border border-[#C5A880]/25 rounded-lg pointer-events-none z-20 group-hover:border-[#C5A880]/50 transition-all duration-500"></div>
+                
+                <div className="relative w-full h-full overflow-hidden">
                   <img
                     src="/photos/img28.jpg"
                     alt="Secure Parking"
-                    className={`w-full h-full object-cover transition-all duration-700 ease-in-out ${isParkingHovered ? "rounded-[36px]" : "rounded-xl"}`}
+                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1A0D10]/80 via-transparent to-transparent"></div>
                   <div className="absolute bottom-6 left-6 right-6 z-10">
@@ -997,8 +1008,7 @@ export default function HotelUI() {
               </div>
 
               {/* Right Column: Details */}
-              <div className={`order-1 lg:order-2 text-black transition-all duration-700 ease-in-out ${isParkingHovered ? "lg:w-0 lg:opacity-0 lg:scale-95 lg:overflow-hidden lg:pointer-events-none" : "w-full lg:w-[38%] opacity-100"
-                }`}>
+              <div className="w-full lg:w-[40%] text-black order-1 lg:order-2">
                 <span className="text-xs uppercase tracking-[0.25em] text-[#5C1A24] font-bold block">Seamless Access</span>
                 <h2 className="text-4xl sm:text-5xl font-serif font-light text-[#1E1C1A] mt-2 tracking-tight">
                   Secure & Spacious Parking
@@ -1036,11 +1046,12 @@ export default function HotelUI() {
         </section>
 
         {/* SIGNATURE DINING SECTION */}
-        <section id="dining" className="py-24 bg-gradient-to-b from-[#FAF8F5] to-[#F5EFEB] border-t border-[#C5A880]/30">
+        <section id="dining" className="py-24 bg-[#E8F2F7] border-t border-[#C5A880]/30">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-            <div className={`flex flex-col lg:flex-row items-center w-full lg:h-[550px] transition-all duration-700 ease-in-out ${isWaitingHovered ? "gap-0" : "gap-16"}`}>
+            <div className="flex flex-col lg:flex-row items-center w-full gap-12 md:gap-16">
+              
               {/* Left Column: Details */}
-              <div className={`text-black transition-all duration-700 ease-in-out ${isWaitingHovered ? "lg:w-0 lg:opacity-0 lg:scale-95 lg:overflow-hidden lg:pointer-events-none" : "w-full lg:w-[46%] opacity-100"}`}>
+              <div className="w-full lg:w-[40%] text-black order-2 lg:order-1">
                 <span className="text-xs uppercase tracking-[0.25em] text-[#5C1A24] font-bold block">Sophisticated Comfort</span>
                 <h2 className="text-4xl sm:text-5xl font-serif font-light text-[#1E1C1A] mt-2 tracking-tight">
                   Executive Waiting Room & Lounge
@@ -1073,19 +1084,22 @@ export default function HotelUI() {
                 </div>
               </div>
 
-              {/* Right Column: Waiting Image */}
-              <div
-                onMouseEnter={() => setIsWaitingHovered(true)}
-                onMouseLeave={() => setIsWaitingHovered(false)}
-                className={`relative h-[280px] sm:h-[400px] lg:h-[550px] shadow-2xl shadow-black/60 order-2 lg:order-1 transition-all duration-700 ease-in-out cursor-pointer perspective-[1000px] hover:scale-[1.03] hover:[transform:rotateY(-6deg)_rotateX(4deg)] hover:shadow-black/75 will-change-transform isolation-isolate ${isWaitingHovered ? "w-full lg:w-full rounded-[40px]" : "w-full lg:w-[50%] rounded-2xl"
-                  }`}
-              >
-                <div className={`relative w-full h-full overflow-hidden transition-all duration-700 ease-in-out ${isWaitingHovered ? "rounded-[36px]" : "rounded-xl"}`}>
+              {/* Right Column: Waiting Image Card */}
+              <div className="relative w-full lg:w-[55%] h-[300px] sm:h-[420px] lg:h-[500px] shadow-2xl group rounded-2xl overflow-hidden border border-[#C5A880]/30 cursor-pointer order-1 lg:order-2">
+                {/* Thin golden outline border overlay for luxury aesthetic */}
+                <div className="absolute inset-4 border border-[#C5A880]/25 rounded-lg pointer-events-none z-20 group-hover:border-[#C5A880]/50 transition-all duration-500"></div>
+
+                <div className="relative w-full h-full overflow-hidden">
                   <img
                     src="/photos/img34.jpg"
                     alt="Executive Lounge"
-                    className={`w-full h-full object-cover transition-all duration-700 ease-in-out ${isWaitingHovered ? "rounded-[36px]" : "rounded-xl"}`}
+                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A0D10]/80 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-6 left-6 right-6 z-10">
+                    <span className="text-[10px] uppercase tracking-[0.25em] text-[#C5A880] font-bold block mb-1">Palace Transit</span>
+                    <span className="text-xl font-serif text-white font-semibold tracking-wide">Transit Seating & Lounge</span>
+                  </div>
                 </div>
               </div>
             </div>

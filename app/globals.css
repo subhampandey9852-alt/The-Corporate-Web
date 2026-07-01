@@ -175,3 +175,15 @@ button {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Disable sweep shine effect for room cards and other selected cards */
+.room-card::after,
+.room-card:hover::after,
+.mounted-shine .room-card::after,
+.disable-shine::after,
+.disable-shine:hover::after,
+.mounted-shine .disable-shine::after {
+  content: none !important;
+  display: none !important;
+  animation: none !important;
+}

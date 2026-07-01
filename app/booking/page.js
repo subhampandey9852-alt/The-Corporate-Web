@@ -284,7 +284,7 @@ function BookingPage() {
                         setSelectedRoomId(rid);
                       }
                     }}
-                    className={`group p-5 rounded-xl border transition-all duration-500 flex flex-col gap-5 -translate-y-0 md:hover:-translate-y-1 md:hover:shadow-md ${booked
+                    className={`room-card group p-5 rounded-xl border transition-all duration-500 flex flex-col gap-5 -translate-y-0 md:hover:-translate-y-1 md:hover:shadow-md ${booked
                       ? "bg-yellow-100 border-yellow-200 opacity-75 cursor-not-allowed"
                       : isChosen
                         ? " bg-sky-100 bg-card-gradient border-transparent shadow-md cursor-pointer"
