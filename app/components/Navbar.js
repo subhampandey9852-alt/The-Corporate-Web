@@ -48,7 +48,7 @@ function Navbar() {
             <img
               src="/images/The Corporate House (15).png"
               alt="The Corporate House Logo"
-              className="h-20 sm:h-24 w-auto object-contain brightness-135 contrast-120 drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
+              className="h-20 sm:h-24 w-auto object-contain brightness-110 contrast-110 saturate-150 drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
             />
             <span className="text-base sm:text-lg font-semibold tracking-[0.2em] uppercase text-[var(--ink)] leading-none">
               ℍ𝕆𝕋𝔼𝕃 the corporate house
