@@ -374,7 +374,7 @@ export default function Home() {
            
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="#contact"
+                href="/booking"
                 className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--ink)] transition hover:scale-[1.02]">
                 Book Your Stay
               </Link>
@@ -390,7 +390,7 @@ export default function Home() {
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="rounded-[2rem] border border-white/20 bg-white/10 p-6 text-white shadow-2xl backdrop-blur-xl">
+            className="hidden lg:block rounded-[2rem] border border-white/20 bg-white/10 p-6 text-white shadow-2xl backdrop-blur-xl">
             <div className="flex items-center justify-between border-b border-white/15 pb-4">
               <div>
                 <p className="text-sm uppercase tracking-[0.3em] text-white/70">
@@ -788,7 +788,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section id="gallery" className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
         <div className="mb-10">
           <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
             Gallery
@@ -844,10 +844,11 @@ export default function Home() {
               through a cinematic virtual journey crafted for discerning guests.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <button className="rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent)]">
-                Start Tour
-              </button>
-              <button className="rounded-full border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--ink)] transition hover:bg-[var(--page-bg)]">
+             
+              <button
+                onClick={() => document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" })}
+                className="rounded-full border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--ink)] transition hover:bg-[var(--page-bg)]"
+              >
                 View Gallery
               </button>
             </div>
@@ -919,7 +920,7 @@ export default function Home() {
                   <h3 className="text-xl font-semibold text-[var(--ink)]">
                     {item.question}
                   </h3>
-                  <ChevronRight className="text-[var(--accent)] shrink-0" size={20} />
+                  
                 </div>
                 <p className="mt-4 text-base leading-relaxed text-[var(--muted)]">
                   {item.answer}

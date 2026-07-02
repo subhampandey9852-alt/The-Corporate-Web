@@ -41,19 +41,19 @@ function Navbar() {
           : "bg-[rgba(247,245,242,0.78)] backdrop-blur-xl"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 py-3 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-0 lg:px-8">
         <div className="flex items-center justify-between py-1.5">
           {/* Logo / Brand */}
-          <Link href="/" className="flex items-center gap-3.5 group">
+          <div className="flex items-center gap-4">
             <img
               src="/images/The Corporate House (15).png"
               alt="The Corporate House Logo"
-              className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-20 sm:h-24 w-auto object-contain brightness-135 contrast-120 drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
             />
-            <span className="text-sm sm:text-base font-semibold tracking-[0.2em] uppercase text-[var(--ink)] leading-none">
+            <span className="text-base sm:text-lg font-semibold tracking-[0.2em] uppercase text-[var(--ink)] leading-none">
               ℍ𝕆𝕋𝔼𝕃 the corporate house
             </span>
-          </Link>
+          </div>
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-7">
