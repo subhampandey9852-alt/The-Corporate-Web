@@ -817,7 +817,9 @@ export default function AdminDashboard() {
                               </td>
                               <td className="py-6 px-6">
                                 <span className="font-bold text-stone-900 text-base block">₹{booking.totalPrice?.toLocaleString()}</span>
-                                <span className="block text-[11px] text-emerald-600 font-semibold uppercase tracking-wider mt-1">{booking.paymentMethod || "Cash Payment"}</span>
+                                <span className={`block text-[11px] font-semibold uppercase tracking-wider mt-1 ${booking.roomId?.startsWith("event-") ? "text-amber-600" : "text-emerald-600"}`}>
+                                  {booking.roomId?.startsWith("event-") ? "Collect at Desk (Cash)" : (booking.paymentMethod || "Cash Payment")}
+                                </span>
                               </td>
                               <td className="py-6 px-6">
                                 <span

@@ -170,91 +170,93 @@ function PackagePage() {
     setIsMounted(true);
   }, []);
   return (
-    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-sans py-12 px-6 md:px-8 max-w-7xl mx-auto space-y-16 selection:bg-brand-green selection:text-white `}>
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} text-[var(--ink)] min-h-screen font-sans pt-[30px] pb-16 px-6 md:px-8 max-w-7xl mx-auto space-y-16 selection:bg-[var(--accent)] selection:text-white`}>
 
       {/* Page Header */}
-      <section className="text-center max-w-3xl mx-auto space-y-4 pt-8">
-        <span className="text-lg uppercase tracking-[0.25em] text-[#FFC72C] font-semibold flex items-center justify-center gap-1.5">
-          <Sparkles className="w-4 h-4 text-green-800" />
-          ℍ𝕆𝕋𝔼𝕃 The Corporate House Packages
+      <section className="text-center max-w-3xl mx-auto space-y-4 pt-0">
+        <span className="text-sm uppercase tracking-[0.3em] text-[var(--accent)] font-semibold flex items-center justify-center gap-1.5">
+          <Sparkles className="w-4 h-4 text-[var(--accent)]" />
+          Packages
         </span>
-        <h1 className="text-4xl md:text-5xl font-serif font-light text-black">
-          Our Rooms & Services
+        <h1 className="text-4xl md:text-5xl font-semibold text-[var(--ink)]">
+          Residences & Workspace Packages
         </h1>
-        <div className="w-12 h-0.5 bg-brand-gold mx-auto"></div>
-        <p className="text-black text-3xl font-normal font-script leading-relaxed max-w-xl mx-auto">
+        <div className="w-12 h-0.5 bg-[var(--accent)] mx-auto"></div>
+        <p className="text-[var(--muted)] font-normal text-lg md:text-xl leading-relaxed">
           Browse through our corporate residences, business workspaces, and shared lounge packages. Select the perfect package for your accommodation needs.
         </p>
       </section>
 
       {/* Packages Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {PACKAGES.map((pkg) => (
-          <div
-            key={pkg.id}
-            className="room-card group bg-card-gradient border border-[#E5E2DA]/20 rounded-2xl overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(26,13,16,0.18)]"
-          >
-            {/* Image Wrap */}
-            <div className="relative h-60 overflow-hidden border-b border-[#E5E2DA]/10">
-              <img
-                src={pkg.image}
-                alt={pkg.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-              />
-              <span className="absolute bottom-4 right-4 text-sm font-serif font-bold px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-md text-brand-green shadow-sm border border-[#E5E2DA]">
-                ₹{pkg.price} <span className="text-[10px] text-stone-500 font-sans font-light">/ night</span>
-              </span>
-            </div>
+        {PACKAGES.map((pkg) => {
+          return (
+            <div
+              key={pkg.id}
+              className="group bg-gradient-to-br from-[#fdfcf7] via-[#faf8f2] to-[#f4eee1] border border-[#e4d8bf]/60 rounded-[2rem] overflow-hidden flex flex-col hover:border-[var(--accent)] hover:shadow-md hover:scale-[1.01] transition-all duration-300"
+            >
+              {/* Image Wrap */}
+              <div className="relative h-60 overflow-hidden border-b border-[var(--border)]">
+                <img
+                  src={pkg.image}
+                  alt={pkg.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                />
+                <span className="absolute bottom-4 right-4 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[var(--surface)]/90 backdrop-blur-sm text-[var(--accent)] shadow-sm border border-[var(--border)]">
+                  ₹{pkg.price} <span className="text-[10px] text-[var(--muted)] font-normal">/ night</span>
+                </span>
+              </div>
 
-            {/* Content Body */}
-            <div className="p-6 flex-grow flex flex-col justify-between space-y-6">
+              {/* Content Body */}
+              <div className="p-6 flex-grow flex flex-col justify-between space-y-6">
 
-              <div className="space-y-4">
-                {/* Title and Specs */}
-                <div>
-                  <h3 className="text-lg font-serif font-bold text-white transition-colors leading-snug">
-                    {pkg.name}
-                  </h3>
-                  <div className="flex items-center gap-2 text-stone-300 text-[10px] uppercase font-bold tracking-wider mt-1.5">
-                    <span>{pkg.size}</span>
-                    <span>•</span>
-                    <span>{pkg.bed}</span>
-                    <span>•</span>
-                    <span>{pkg.guests}</span>
+                <div className="space-y-4">
+                  {/* Title and Specs */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-[var(--ink)] leading-snug">
+                      {pkg.name}
+                    </h3>
+                    <div className="flex items-center gap-2 text-[var(--muted)] text-xs mt-1.5">
+                      <span>{pkg.size}</span>
+                      <span>•</span>
+                      <span>{pkg.bed}</span>
+                      <span>•</span>
+                      <span>{pkg.guests || "2 Guests"}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-[var(--muted)] text-sm leading-relaxed">
+                    {pkg.description}
+                  </p>
+
+                  {/* Services / Features List */}
+                  <div className="space-y-2 pt-2 border-t border-[var(--border)]">
+                    <h4 className="text-xs uppercase tracking-wider font-semibold text-[var(--ink)]">
+                      Included Services
+                    </h4>
+                    <ul className="grid grid-cols-1 gap-1.5">
+                      {pkg.services.map((service, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-xs text-[var(--muted)]">
+                          <Check className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" />
+                          <span>{service}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
 
-                <p className="text-stone-200 text-xs font-normal leading-relaxed">
-                  {pkg.description}
-                </p>
+                {/* Action Button */}
+                <Link
+                  href="/booking"
+                  className="block w-full py-3.5 text-center rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-[var(--ink)] hover:bg-[var(--accent)] transition-all duration-350 hover:scale-[1.01]"
+                >
+                  Book This Package
+                </Link>
 
-                {/* Services / Features List */}
-                <div className="space-y-2 pt-2 border-t border-white/10">
-                  <h4 className="text-[10px] uppercase font-bold tracking-wider text-stone-300">
-                    Included Services
-                  </h4>
-                  <ul className="grid grid-cols-1 gap-1.5">
-                    {pkg.services.map((service, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-xs text-stone-200 font-normal">
-                        <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                        <span>{service}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
-
-              {/* Action Button */}
-              <Link
-                href="/booking"
-                className="block w-full py-3 text-center rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-x-gold-green animate-gradient-x shadow-sm transition-all duration-200 hover:scale-[1.01]"
-              >
-                Book This Package
-              </Link>
-
             </div>
-          </div>
-        ))}
+          );
+        })}
       </section>
 
     </div>

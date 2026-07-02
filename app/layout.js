@@ -1,40 +1,45 @@
-import { Inter, Playfair_Display, Alex_Brush } from "next/font/google";
+import {
+  Inter,
+  Cormorant_Garamond,
+  Bricolage_Grotesque,
+  Playball,
+} from "next/font/google";
 import "./globals.css";
+import { LenisProvider } from "@/components/lenis-provider";
 import LayoutWrapper from "./components/LayoutWrapper";
-import { Poppins } from "next/font/google";
 
-const poppins = Poppins({
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
+});
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+});
+const playball = Playball({
+  subsets: ["latin"],
+  variable: "--font-playball",
+  weight: ["400"],
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-});
-
-const alexBrush = Alex_Brush({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-script",
-});
+export const metadata = {
+  title: "Corporate House | Luxury Hotel",
+  description:
+    "Premium luxury hotel website for Corporate House with refined suites, dining, meetings, and wellness experiences.",
+};
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${alexBrush.variable} overflow-x-clip`}>
-      <body
-        className={`${poppins.className} min-h-screen flex flex-col antialiased text-black bg-[#A52A2A] transition-colors duration-300 relative overflow-x-clip`}
-      >
-        {/* Animated Background Glow Blobs for Luxury Aesthetic */}
-        <div className="absolute top-[55%] right-[-15%] w-[50vw] h-[50vw] rounded-full bg-brand-radishblack bg-glow-blob-secondary pointer-events-none z-0"></div>
-        <LayoutWrapper>
-          {children}
-        </LayoutWrapper>
+    <html
+      lang="en"
+      className={`${inter.variable} ${cormorant.variable} ${bricolage.variable} ${playball.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
+        <LenisProvider>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </LenisProvider>
       </body>
     </html>
   );

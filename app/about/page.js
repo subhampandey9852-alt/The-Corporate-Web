@@ -56,26 +56,26 @@ function About() {
   }
 
   return (
-    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-sans py-12 px-6 md:px-8 max-w-7xl mx-auto space-y-20 selection:bg-brand-green selection:text-white `}>
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} text-[var(--ink)] min-h-screen font-sans pt-[30px] pb-16 px-6 md:px-8 max-w-7xl mx-auto space-y-20 selection:bg-[var(--accent)] selection:text-white`}>
 
       {/* Heritage Narrative Header */}
-      <section className="text-center max-w-3xl mx-auto space-y-4 pt-8">
-        <span className="text-lg uppercase tracking-[0.25em] text-[#FFC72C] font-bold flex items-center justify-center gap-1.5">
-          <Sparkles className="w-4 h-4 text-green-800" />
-          ℍ𝕆𝕋𝔼𝕃 The Corporate House Story
+      <section className="text-center max-w-3xl mx-auto space-y-4 pt-0">
+        <span className="text-sm uppercase tracking-[0.3em] text-[var(--accent)] font-semibold flex items-center justify-center gap-1.5">
+          <Sparkles className="w-4 h-4 text-[var(--accent)]" />
+          Our Story
         </span>
-        <h1 className="text-4xl md:text-5xl font-serif font-light text-black">
+        <h1 className="text-4xl md:text-5xl font-semibold text-[var(--ink)]">
           Our Heritage
         </h1>
-        <div className="w-12 h-0.5 bg-brand-gold mx-auto"></div>
-        <p className="text-black font-normal text-2xl md:text-3xl font-script leading-loose">
-          ℍ𝕆𝕋𝔼𝕃 The Corporate House was built with a single vision: to integrate modern comfort with world-class hospitality. Situated along the coast, it stands as a premium location for leisure stays, coastal escapes, and luxury lodging.
+        <div className="w-12 h-0.5 bg-[var(--accent)] mx-auto"></div>
+        <p className="text-[var(--muted)] font-normal text-lg md:text-xl leading-relaxed">
+          Corporate House was built with a single vision: to integrate modern comfort with world-class hospitality. Situated in a prime location, it stands as an exceptional destination for business stays, leisure escapes, and refined lodging.
         </p>
       </section>
 
       {/* Grid: Heritage & Bespoke Service */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="relative h-[400px] rounded-xl overflow-hidden shadow-md">
+        <div className="relative h-[400px] rounded-[2rem] overflow-hidden border border-[var(--border)] shadow-sm">
           <img
             src="/photos/img37.jpg"
             alt="Resort architecture"
@@ -84,46 +84,46 @@ function About() {
         </div>
 
         <div className="space-y-6">
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-black">
+          <h2 className="text-3xl font-semibold text-[var(--ink)]">
             A Sanctuary of Quietude
           </h2>
-          <p className="text-black text-sm font-bold leading-relaxed">
-            Every room at ℍ𝕆𝕋𝔼𝕃 The Corporate House is crafted to optimize guest rejuvenation and relaxation, featuring smart automation, premium bedding, and natural light. We offer standard-setting amenities and dining menus to make sure your stay is seamless and rewarding.
+          <p className="text-[var(--muted)] text-base leading-relaxed">
+            Every room at Corporate House is crafted to optimize guest rejuvenation and relaxation, featuring smart automation, premium bedding, and natural light. We offer standard-setting amenities and dining menus to make sure your stay is seamless and rewarding.
           </p>
           <div className="grid grid-cols-2 gap-6 pt-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-8 h-8" />
+              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-xs uppercase font-bold text-black">Exclusive Location</h4>
-                <p className="text-[10px] text-black/70">102 Ocean Drive, Malibu</p>
+                <h4 className="text-xs uppercase font-bold text-[var(--ink)]">Exclusive Location</h4>
+                <p className="text-sm text-[var(--muted)]">18 Harbor Avenue, Downtown</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0">
-                <Compass className="w-8 h-8" />
+              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center flex-shrink-0">
+                <Compass className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-xs uppercase font-bold text-black">Bespoke Journeys</h4>
-                <p className="text-[10px] text-black/70">24/7 Butler Services</p>
+                <h4 className="text-xs uppercase font-bold text-[var(--ink)]">Bespoke Journeys</h4>
+                <p className="text-sm text-[var(--muted)]">24/7 Butler Services</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Redesigned Stay Request / Activity Planner (Todo App) */}
-      <section className="bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-xl p-4 sm:p-8 max-w-2xl mx-auto shadow-2xl space-y-6 hover:border-slate-700 hover:-translate-y-1 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
-        <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-2 border border-amber-500/25">
+      {/* Stay Request / Activity Planner (Todo App) */}
+      <section className="bg-[var(--surface)] border border-[var(--border)] rounded-[2.5rem] p-6 sm:p-10 max-w-2xl mx-auto shadow-sm space-y-8 hover:shadow-md transition-all duration-300">
+        <div className="text-center space-y-3">
+          <div className="w-12 h-12 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center mx-auto mb-2">
             <ListTodo className="w-6 h-6" />
           </div>
-          <h3 className="text-xl md:text-2xl font-serif font-light text-black">
+          <h3 className="text-2xl font-semibold text-[var(--ink)]">
             Guest Stay Request Planner
           </h3>
-          <p className="text-black text-xs font-bold max-w-sm mx-auto">
-            Design your ideal holiday itinerary. Add requests or booking needs below, and our concierges will curate them instantly.
+          <p className="text-[var(--muted)] text-sm max-w-md mx-auto">
+            Design your ideal stay itinerary. Add special requests or booking needs below, and our concierges will curate them for you.
           </p>
         </div>
 
@@ -135,11 +135,11 @@ function About() {
             onChange={(e) => setRequestInput(e.target.value)}
             placeholder="e.g., Book sunset cruise at 5:00 PM"
             onKeyDown={(e) => e.key === "Enter" && handleAddRequest()}
-            className="flex-grow bg-slate-950/80 border border-slate-800 rounded-lg px-4 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400 transition-colors placeholder:text-slate-650"
+            className="flex-grow bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-5 py-3 text-sm text-[var(--ink)] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder:text-[var(--muted)]/60"
           />
           <button
             onClick={handleAddRequest}
-            className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-950 bg-amber-500 hover:bg-amber-600 transition-colors whitespace-nowrap shadow-md text-center"
+            className="w-full sm:w-auto px-6 py-3 rounded-full text-sm font-semibold text-white bg-[var(--ink)] hover:bg-[var(--accent)] transition-all whitespace-nowrap shadow-sm text-center cursor-pointer"
           >
             Add Request
           </button>
@@ -148,34 +148,34 @@ function About() {
         {/* Request List Display */}
         <div className="space-y-3">
           {requestList.length === 0 ? (
-            <p className="text-center text-slate-500 text-xs py-8">Your request list is empty. Add item above to start planning.</p>
+            <p className="text-center text-[var(--muted)] text-sm py-8">Your request list is empty. Add items above to start planning.</p>
           ) : (
             requestList.map((req, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-4 bg-slate-950/40 border border-slate-800/80 rounded-lg group hover:border-slate-700 hover:bg-slate-900/60 hover:-translate-y-0.5 transition-all duration-500 hover:shadow-md gap-3"
+                className="flex items-center justify-between p-4 bg-[var(--page-bg)]/40 border border-[var(--border)] rounded-2xl group hover:border-[var(--accent)]/45 transition-all duration-300 gap-3"
               >
                 <div className="flex items-center gap-3 min-w-0 flex-1">
-                  <span className="w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center text-[10px] font-bold flex-shrink-0">
+                  <span className="w-6 h-6 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center text-xs font-semibold flex-shrink-0">
                     {idx + 1}
                   </span>
-                  <span className="text-slate-200 text-xs font-light break-words min-w-0">{req}</span>
+                  <span className="text-[var(--ink)] text-sm break-words min-w-0">{req}</span>
                 </div>
 
-                <div className="flex gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                <div className="flex gap-2 flex-shrink-0">
                   <button
                     onClick={() => handleEditRequest(idx)}
-                    className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-800 transition-colors"
+                    className="p-2 rounded-xl bg-[var(--surface)] hover:bg-[var(--page-bg)] text-[var(--accent)] border border-[var(--border)] transition-colors cursor-pointer"
                     title="Edit Request"
                   >
-                    <Edit3 className="w-3.5 h-3.5" />
+                    <Edit3 className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => handleDeleteRequest(idx)}
-                    className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-rose-400 border border-slate-800 transition-colors"
+                    className="p-2 rounded-xl bg-[var(--surface)] hover:bg-[var(--page-bg)] text-[var(--error)] border border-[var(--border)] transition-colors cursor-pointer"
                     title="Remove Request"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
+                    <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -189,28 +189,28 @@ function About() {
         <div className="fixed inset-0 z-50 flex items-center justify-center font-sans">
           <div
             onClick={() => setShowEditModal(false)}
-            className="absolute inset-0 bg-slate-950/80 backdrop-blur-xs"
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
           ></div>
-          <div className="relative z-10 bg-slate-900 border border-slate-800 p-6 rounded-xl w-full max-w-md shadow-2xl space-y-4 mx-4">
-            <h4 className="text-base font-serif font-bold text-white uppercase tracking-wide">
+          <div className="relative z-10 bg-[var(--surface)] border border-[var(--border)] p-8 rounded-[2rem] w-full max-w-md shadow-xl space-y-6 mx-4">
+            <h4 className="text-lg font-semibold text-[var(--ink)]">
               Edit Request Details
             </h4>
             <input
               type="text"
               value={editValue}
               onChange={(e) => setEditValue(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
+              className="w-full bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-5 py-3 text-sm text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
             />
-            <div className="flex justify-end gap-2 pt-2">
+            <div className="flex justify-end gap-3 pt-2">
               <button
                 onClick={() => setShowEditModal(false)}
-                className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 transition-colors"
+                className="px-5 py-2.5 rounded-full text-sm font-semibold text-[var(--muted)] hover:text-[var(--ink)] transition-colors cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleUpdateRequest}
-                className="px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-950 bg-amber-500 hover:bg-amber-600 transition-colors"
+                className="px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-[var(--ink)] hover:bg-[var(--accent)] transition-colors cursor-pointer"
               >
                 Save Changes
               </button>

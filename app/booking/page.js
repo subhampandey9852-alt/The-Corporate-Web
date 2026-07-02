@@ -244,19 +244,19 @@ function BookingPage() {
   };
 
   return (
-    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0 mounted-shine" : "opacity-0 translate-y-6"} text-black min-h-screen font-sans py-16 px-6 md:px-12 max-w-[90rem] mx-auto space-y-16 selection:bg-brand-green selection:text-white `}>
+    <div className={`transition-all duration-1000 transform ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} text-[var(--ink)] min-h-screen font-sans pt-[30px] pb-16 px-6 md:px-12 max-w-[90rem] mx-auto space-y-16 selection:bg-[var(--accent)] selection:text-white`}>
 
       {/* Header */}
-      <section className="text-center max-w-4xl mx-auto space-y-5 pt-8">
-        <span className="text-lg uppercase tracking-[0.25em] text-[#FFC72C] font-semibold flex items-center justify-center gap-2">
-          <Sparkles className="w-4.5 h-4.5 text-green-800" />
-          The Corporate House Stays
+      <section className="text-center max-w-4xl mx-auto space-y-5 pt-0">
+        <span className="text-sm uppercase tracking-[0.3em] text-[var(--accent)] font-semibold flex items-center justify-center gap-2">
+          <Sparkles className="w-4.5 h-4.5 text-[var(--accent)]" />
+          Stay Reservations
         </span>
-        <h1 className="text-5xl md:text-6xl font-serif font-light text-black tracking-tight">
+        <h1 className="text-4xl md:text-5xl font-semibold text-[var(--ink)] tracking-tight">
           Book Your Stay
         </h1>
-        <div className="w-16 h-0.5 bg-brand-green mx-auto"></div>
-        <p className="text-black text-3xl font-script leading-relaxed">
+        <div className="w-16 h-0.5 bg-[var(--accent)] mx-auto"></div>
+        <p className="text-[var(--muted)] text-base leading-relaxed max-w-xl mx-auto">
           Select from our selection of premium boutique rooms. Customize your check-in slot and secure your booking instantly.
         </p>
       </section>
@@ -267,7 +267,7 @@ function BookingPage() {
 
           {/* Room Selection Grid (7 cols) */}
           <div className="lg:col-span-7 space-y-8">
-            <h3 className="text-xl font-serif font-bold uppercase tracking-wide text-stone-700">
+            <h3 className="text-xl font-semibold tracking-wide text-[var(--ink)]">
               Step 1: Choose Your Room
             </h3>
 
@@ -284,33 +284,33 @@ function BookingPage() {
                         setSelectedRoomId(rid);
                       }
                     }}
-                    className={`room-card group p-5 rounded-xl border transition-all duration-500 flex flex-col gap-5 -translate-y-0 md:hover:-translate-y-1 md:hover:shadow-md ${booked
-                      ? "bg-yellow-100 border-yellow-200 opacity-75 cursor-not-allowed"
+                    className={`group p-5 rounded-[2rem] border transition-all duration-300 flex flex-col gap-5 cursor-pointer ${booked
+                      ? "bg-stone-50 border-stone-200 opacity-60 cursor-not-allowed"
                       : isChosen
-                        ? " bg-sky-100 bg-card-gradient border-transparent shadow-md cursor-pointer"
-                        : "bg-white border-[#E5E2DA] md:hover:border-transparent md:hover:bg-card-gradient cursor-pointer"
+                        ? "bg-gradient-to-br from-[#fdfcf7] via-[#faf8f2] to-[#eadaa6]/50 border-[var(--accent)] ring-2 ring-[var(--accent)]/20 shadow-sm"
+                        : "bg-gradient-to-br from-[#fdfcf7] via-[#faf8f2] to-[#f4eee1] border border-[#e4d8bf]/60 hover:border-[var(--accent)] hover:shadow-sm"
                       }`}
                   >
-                    <div className="w-full h-52 rounded-lg overflow-hidden flex-shrink-0">
+                    <div className="w-full h-52 rounded-[1.5rem] overflow-hidden flex-shrink-0">
                       <img
                         src={room.image}
                         alt={room.name}
-                        className="w-full h-full object-cover md:group-hover:scale-105 transition-transform duration-700 ease-out"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     </div>
                     <div className="flex-grow space-y-2.5 flex flex-col justify-between">
                       <div>
                         <div className="flex justify-between items-baseline gap-2">
-                          <h4 className={`text-base font-bold font-serif line-clamp-1 transition-colors duration-300 ${isChosen ? "text-white" : "text-[#1C2A22] md:group-hover:text-black"}`}>{room.name}</h4>
-                          <span className={`text-base font-serif font-bold shrink-0 transition-colors duration-300 ${isChosen ? "text-amber-400" : "text-brand-green md:group-hover:text-black"}`}>
-                            {booked ? <span className="text-red-600 text-xs font-sans font-bold">Booked</span> : `₹${room.price}`}
+                          <h4 className={`text-base font-bold line-clamp-1 transition-colors duration-300 ${isChosen ? "text-[var(--accent)]" : "text-[var(--ink)]"}`}>{room.name}</h4>
+                          <span className={`text-base font-bold shrink-0 transition-colors duration-300 ${isChosen ? "text-[var(--accent)]" : "text-[var(--accent)]/90"}`}>
+                            {booked ? <span className="text-[var(--error)] text-xs font-semibold">Booked</span> : `₹${room.price}`}
                           </span>
                         </div>
-                        <p className={`text-xs font-bold leading-relaxed line-clamp-2 mt-1 transition-colors duration-300 ${isChosen ? "text-slate-300" : "text-black md:group-hover:text-black"}`}>
+                        <p className="text-xs leading-relaxed line-clamp-2 mt-1 text-[var(--muted)]">
                           {room.description}
                         </p>
                       </div>
-                      <div className={`flex items-center gap-2 text-xs pt-2 mt-1 transition-colors duration-300 border-t ${isChosen ? "text-slate-400 border-slate-800/80" : "text-stone-400 md:group-hover:text-black border-stone-100 md:group-hover:border-slate-800/80"}`}>
+                      <div className="flex items-center gap-2 text-xs pt-2 mt-1 transition-colors duration-300 border-t border-[var(--border)] text-[var(--muted)]">
                         <span>{room.size}</span>
                         <span>•</span>
                         <span>{room.bed}</span>
@@ -324,34 +324,34 @@ function BookingPage() {
 
           {/* Right Panel: Booking details or payment selection */}
           {allRoomsBooked ? (
-            <div className="lg:col-span-5 bg-white border border-red-200 rounded-xl p-6 md:p-8 space-y-4 shadow-sm text-center">
-              <div className="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mx-auto">
+            <div className="lg:col-span-5 bg-[var(--surface)] border border-[var(--border)] rounded-[2.5rem] p-6 md:p-8 space-y-4 shadow-sm text-center">
+              <div className="w-12 h-12 rounded-full bg-rose-50 text-[var(--error)] flex items-center justify-center mx-auto">
                 <Calendar className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-serif font-bold text-red-800">
+              <h3 className="text-lg font-semibold text-[var(--error)]">
                 No Rooms Available
               </h3>
-              <p className="text-stone-500 text-xs font-light leading-relaxed">
+              <p className="text-[var(--muted)] text-xs leading-relaxed">
                 Unfortunately, all of our rooms are booked for the dates you have selected. Please select a different check-in or check-out date to check availability.
               </p>
               <div className="pt-2">
                 <div className="grid grid-cols-2 gap-4 text-left">
                   <div className="flex flex-col gap-1">
-                    <label className="text-[9px] uppercase font-bold text-stone-400">Check-In</label>
+                    <label className="text-[9px] uppercase font-bold text-[var(--muted)]">Check-In</label>
                     <input
                       type="date"
                       value={dates.checkInDate}
                       onChange={(e) => setDates(prev => ({ ...prev, checkInDate: e.target.value }))}
-                      className="bg-stone-50 border border-[#E5E2DA] rounded-lg px-2.5 py-1.5 text-xs text-stone-700 focus:outline-none focus:border-brand-green"
+                      className="bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-4 py-2.5 text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                     />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <label className="text-[9px] uppercase font-bold text-stone-400">Check-Out</label>
+                    <label className="text-[9px] uppercase font-bold text-[var(--muted)]">Check-Out</label>
                     <input
                       type="date"
                       value={dates.checkOutDate}
                       onChange={(e) => setDates(prev => ({ ...prev, checkOutDate: e.target.value }))}
-                      className="bg-stone-50 border border-[#E5E2DA] rounded-lg px-2.5 py-1.5 text-xs text-stone-700 focus:outline-none focus:border-brand-green"
+                      className="bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-4 py-2.5 text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                     />
                   </div>
                 </div>
@@ -359,83 +359,83 @@ function BookingPage() {
             </div>
           ) : showPaymentSelection ? (
             /* Step 3: Choose Payment Method */
-            <form onSubmit={handleBookingSubmit} className="lg:col-span-5 bg-white border border-[#E5E2DA] rounded-xl p-6 md:p-8 space-y-6 shadow-sm lg:sticky lg:top-24">
-              <div className="flex items-center gap-2 pb-2 border-b border-stone-100">
+            <form onSubmit={handleBookingSubmit} className="lg:col-span-5 bg-[var(--surface)] border border-[var(--border)] rounded-[2.5rem] p-8 space-y-6 shadow-sm lg:sticky lg:top-24">
+              <div className="flex items-center gap-2 pb-2 border-b border-[var(--border)]">
                 <button
                   type="button"
                   onClick={() => setShowPaymentSelection(false)}
-                  className="p-1 hover:bg-stone-100 rounded-full transition-colors text-stone-500"
+                  className="p-1.5 hover:bg-[var(--page-bg)] rounded-full transition-colors text-[var(--muted)] cursor-pointer"
                 >
                   <ArrowLeft className="w-4 h-4" />
                 </button>
-                <h3 className="text-lg font-serif font-bold uppercase tracking-wide text-stone-700">
+                <h3 className="text-lg font-semibold uppercase tracking-wide text-[var(--ink)]">
                   Step 3: Payment Option
                 </h3>
               </div>
 
               <div className="space-y-4">
-                <div className="p-4 bg-stone-50 border border-[#E5E2DA] rounded-lg space-y-2 text-xs">
+                <div className="p-4 bg-[var(--page-bg)]/50 border border-[var(--border)] rounded-2xl space-y-2 text-xs text-[var(--muted)]">
                   <div className="flex justify-between">
-                    <span className="text-stone-500">Selected Room:</span>
-                    <strong className="text-[#1C2A22]">{selectedRoom?.name}</strong>
+                    <span>Selected Room:</span>
+                    <strong className="text-[var(--ink)]">{selectedRoom?.name}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-stone-500">Nights:</span>
-                    <strong className="text-[#1C2A22]">{nightsCount}</strong>
+                    <span>Nights:</span>
+                    <strong className="text-[var(--ink)]">{nightsCount}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-stone-500">Base Price:</span>
-                    <strong className="text-stone-700">₹{basePrice}</strong>
+                    <span>Base Price:</span>
+                    <strong className="text-[var(--ink)]">₹{basePrice}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-stone-500">GST (18%):</span>
-                    <strong className="text-stone-700">₹{gstAmount}</strong>
+                    <span>GST (18%):</span>
+                    <strong className="text-[var(--ink)]">₹{gstAmount}</strong>
                   </div>
-                  <div className="flex justify-between border-t border-stone-200 pt-2 mt-1">
-                    <span className="text-stone-500 font-bold">Total Price (incl. GST):</span>
-                    <strong className="text-brand-green font-serif text-sm">₹{totalPrice}</strong>
+                  <div className="flex justify-between border-t border-[var(--border)] pt-2 mt-1">
+                    <span className="font-bold text-[var(--ink)]">Total Price (incl. GST):</span>
+                    <strong className="text-[var(--accent)] text-sm font-semibold">₹{totalPrice}</strong>
                   </div>
                 </div>
 
-                <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 block">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-[var(--muted)] block">
                   Choose Payment Method
                 </span>
 
                 <div className="grid grid-cols-1 gap-3">
                   <div
                     onClick={() => setPaymentMethod("Online Payment")}
-                    className={`p-4 rounded-xl border-2 cursor-pointer flex items-center justify-between transition-all duration-300 hover:scale-[1.01] hover:shadow-sm ${paymentMethod === "Online Payment"
-                      ? "border-brand-green bg-brand-green/5"
-                      : "border-[#E5E2DA] bg-white hover:border-stone-300"
+                    className={`p-4 rounded-2xl border-2 cursor-pointer flex items-center justify-between transition-all duration-300 hover:scale-[1.01] ${paymentMethod === "Online Payment"
+                      ? "border-[var(--accent)] bg-[var(--accent)]/5"
+                      : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/30"
                       }`}
                   >
                     <div className="flex items-center gap-3">
-                      <CreditCard className={`w-5 h-5 ${paymentMethod === "Online Payment" ? "text-brand-green" : "text-stone-400"}`} />
+                      <CreditCard className={`w-5 h-5 ${paymentMethod === "Online Payment" ? "text-[var(--accent)]" : "text-[var(--muted)]/60"}`} />
                       <div className="text-left">
-                        <span className="text-xs font-bold block text-stone-700">Online Payment</span>
-                        <span className="text-[10px] text-stone-400 font-light">Pay securely with Cards, UPI, or NetBanking</span>
+                        <span className="text-xs font-bold block text-[var(--ink)]">Online Payment</span>
+                        <span className="text-[10px] text-[var(--muted)] font-normal">Pay securely with Cards, UPI, or NetBanking</span>
                       </div>
                     </div>
-                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${paymentMethod === "Online Payment" ? "border-brand-green bg-brand-green" : "border-stone-300"}`}>
+                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${paymentMethod === "Online Payment" ? "border-[var(--accent)] bg-[var(--accent)]" : "border-[var(--border)]"}`}>
                       {paymentMethod === "Online Payment" && <span className="w-1.5 h-1.5 rounded-full bg-white"></span>}
                     </div>
                   </div>
 
                   <div
                     onClick={() => setPaymentMethod("Cash Payment")}
-                    className={`p-4 rounded-xl border-2 cursor-pointer flex items-center justify-between transition-all duration-300 hover:scale-[1.01] hover:shadow-sm ${paymentMethod === "Cash Payment"
-                      ? "border-brand-green bg-brand-green/5"
-                      : "border-[#E5E2DA] bg-white hover:border-stone-300"
+                    className={`p-4 rounded-2xl border-2 cursor-pointer flex items-center justify-between transition-all duration-300 hover:scale-[1.01] ${paymentMethod === "Cash Payment"
+                      ? "border-[var(--accent)] bg-[var(--accent)]/5"
+                      : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/30"
                       }`}
                   >
                     <div className="flex items-center gap-3">
-                      <Coins className={`w-5 h-5 ${paymentMethod === "Cash Payment" ? "text-brand-green" : "text-stone-400"}`} />
+                      <Coins className={`w-5 h-5 ${paymentMethod === "Cash Payment" ? "text-[var(--accent)]" : "text-[var(--muted)]/60"}`} />
                       <div className="text-left">
-                        <span className="text-xs font-bold block text-stone-700">Cash Payment</span>
-                        <span className="text-[10px] text-stone-400 font-light">Pay in cash at the reception desk during check-in</span>
+                        <span className="text-xs font-bold block text-[var(--ink)]">Cash Payment</span>
+                        <span className="text-[10px] text-[var(--muted)] font-normal">Pay in cash at the reception desk during check-in</span>
                       </div>
                     </div>
-                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${paymentMethod === "Cash Payment" ? "border-brand-green bg-brand-green" : "border-stone-300"}`}>
+                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${paymentMethod === "Cash Payment" ? "border-[var(--accent)] bg-[var(--accent)]" : "border-[var(--border)]"}`}>
                       {paymentMethod === "Cash Payment" && <span className="w-1.5 h-1.5 rounded-full bg-white"></span>}
                     </div>
                   </div>
@@ -445,28 +445,28 @@ function BookingPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 rounded-lg text-xs font-bold uppercase tracking-wider text-white bg-gradient-x-gold-green animate-gradient-x hover:shadow-lg hover:shadow-brand-green/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-4 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-[var(--ink)] hover:bg-[var(--accent)] transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? "Processing..." : "Complete Booking"}
               </button>
             </form>
           ) : (
             /* Step 2: Reserve Slots Form */
-            <form onSubmit={handleProceedToPayment} className="lg:col-span-5 bg-white border border-[#E5E2DA] rounded-xl p-7 md:p-10 space-y-8 shadow-sm lg:sticky lg:top-24">
-              <h3 className="text-xl font-serif font-bold uppercase tracking-wide text-stone-700">
+            <form onSubmit={handleProceedToPayment} className="lg:col-span-5 bg-[var(--surface)] border border-[var(--border)] rounded-[2.5rem] p-8 md:p-10 space-y-6 shadow-sm lg:sticky lg:top-24">
+              <h3 className="text-xl font-semibold uppercase tracking-wide text-[var(--ink)]">
                 Step 2: Reserve Slots
               </h3>
 
               {/* Selected Room Tag */}
-              <div className="p-4 bg-stone-50 border border-[#E5E2DA] rounded-lg flex items-center justify-between text-sm">
-                <span className="text-stone-500 font-light">Selected Room:</span>
-                <strong className="text-brand-green font-bold">{selectedRoom?.name}</strong>
+              <div className="p-4 bg-[var(--page-bg)]/50 border border-[var(--border)] rounded-full flex items-center justify-between text-sm">
+                <span className="text-[var(--muted)] font-normal">Selected Room:</span>
+                <strong className="text-[var(--accent)] font-semibold">{selectedRoom?.name}</strong>
               </div>
 
               {/* Guest Name */}
               <div className="flex flex-col gap-2">
-                <label className="text-xs uppercase font-bold tracking-wider text-stone-400 flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-brand-green" />
+                <label className="text-xs uppercase font-bold tracking-wider text-[var(--muted)] flex items-center gap-1.5">
+                  <Users className="w-4 h-4 text-[var(--accent)]" />
                   Guest Name
                 </label>
                 <input
@@ -475,14 +475,14 @@ function BookingPage() {
                   value={guestName}
                   onChange={(e) => setGuestName(e.target.value)}
                   placeholder="Enter guests full name"
-                  className="bg-stone-50 border border-[#E5E2DA] rounded-lg px-4 py-3 text-sm text-stone-700 focus:outline-none focus:border-brand-green"
+                  className="bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-5 py-3 text-sm text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               {/* Phone Number */}
               <div className="flex flex-col gap-2">
-                <label className="text-xs uppercase font-bold tracking-wider text-stone-400 flex items-center gap-1.5">
-                  <Phone className="w-4 h-4 text-brand-green" />
+                <label className="text-xs uppercase font-bold tracking-wider text-[var(--muted)] flex items-center gap-1.5">
+                  <Phone className="w-4 h-4 text-[var(--accent)]" />
                   Phone Number
                 </label>
                 <input
@@ -494,15 +494,15 @@ function BookingPage() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Enter 10-digit phone number"
-                  className="bg-stone-50 border border-[#E5E2DA] rounded-lg px-4 py-3 text-sm text-stone-700 focus:outline-none focus:border-brand-green"
+                  className="bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-5 py-3 text-sm text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               {/* Check-In Date and Time */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs uppercase font-bold tracking-wider text-stone-400 flex items-center gap-1.5">
-                    <Calendar className="w-4 h-4 text-brand-green" />
+                  <label className="text-xs uppercase font-bold tracking-wider text-[var(--muted)] flex items-center gap-1.5">
+                    <Calendar className="w-4 h-4 text-[var(--accent)]" />
                     Check-In Date
                   </label>
                   <input
@@ -510,12 +510,12 @@ function BookingPage() {
                     required
                     value={dates.checkInDate}
                     onChange={(e) => setDates(prev => ({ ...prev, checkInDate: e.target.value }))}
-                    className="bg-stone-50 border border-[#E5E2DA] rounded-lg px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:border-brand-green"
+                    className="bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-4 py-2.5 text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs uppercase font-bold tracking-wider text-stone-400 flex items-center gap-1.5">
-                    <Clock className="w-4 h-4 text-brand-green" />
+                  <label className="text-xs uppercase font-bold tracking-wider text-[var(--muted)] flex items-center gap-1.5">
+                    <Clock className="w-4 h-4 text-[var(--accent)]" />
                     Check-In Time
                   </label>
                   <input
@@ -523,7 +523,7 @@ function BookingPage() {
                     required
                     value={dates.checkInTime}
                     onChange={(e) => setDates(prev => ({ ...prev, checkInTime: e.target.value }))}
-                    className="bg-stone-50 border border-[#E5E2DA] rounded-lg px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:border-brand-green"
+                    className="bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-4 py-2.5 text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                   />
                 </div>
               </div>
@@ -531,8 +531,8 @@ function BookingPage() {
               {/* Check-Out Date and Time */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs uppercase font-bold tracking-wider text-stone-400 flex items-center gap-1.5">
-                    <Calendar className="w-4 h-4 text-brand-green" />
+                  <label className="text-xs uppercase font-bold tracking-wider text-[var(--muted)] flex items-center gap-1.5">
+                    <Calendar className="w-4 h-4 text-[var(--accent)]" />
                     Check-Out Date
                   </label>
                   <input
@@ -540,12 +540,12 @@ function BookingPage() {
                     required
                     value={dates.checkOutDate}
                     onChange={(e) => setDates(prev => ({ ...prev, checkOutDate: e.target.value }))}
-                    className="bg-stone-50 border border-[#E5E2DA] rounded-lg px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:border-brand-green"
+                    className="bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-4 py-2.5 text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs uppercase font-bold tracking-wider text-stone-400 flex items-center gap-1.5">
-                    <Clock className="w-4 h-4 text-brand-green" />
+                  <label className="text-xs uppercase font-bold tracking-wider text-[var(--muted)] flex items-center gap-1.5">
+                    <Clock className="w-4 h-4 text-[var(--accent)]" />
                     Check-Out Time
                   </label>
                   <input
@@ -553,85 +553,85 @@ function BookingPage() {
                     required
                     value={dates.checkOutTime}
                     onChange={(e) => setDates(prev => ({ ...prev, checkOutTime: e.target.value }))}
-                    className="bg-stone-50 border border-[#E5E2DA] rounded-lg px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:border-brand-green"
+                    className="bg-[var(--page-bg)] border border-[var(--border)] rounded-full px-4 py-2.5 text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                   />
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-lg text-sm font-bold uppercase tracking-wider text-white bg-gradient-x-gold-green animate-gradient-x hover:shadow-lg hover:shadow-brand-green/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                className="w-full py-4 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-[var(--ink)] hover:bg-[var(--accent)] transition-all duration-300 cursor-pointer"
               >
-                Book
+                Book Stay
               </button>
             </form>
           )}
         </div>
       ) : (
         // Confirmation Screen
-        <div className="max-w-md mx-auto bg-white border border-[#E5E2DA] p-8 rounded-xl shadow-sm text-center space-y-6">
-          <div className="w-16 h-16 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center mx-auto border border-amber-500/20">
+        <div className="max-w-md mx-auto bg-[var(--surface)] border border-[var(--border)] p-8 rounded-[2.5rem] shadow-sm text-center space-y-6">
+          <div className="w-16 h-16 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center mx-auto">
             <CheckCircle className="w-8 h-8" />
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-2xl font-serif font-light text-[#1C2A22] uppercase tracking-wide">
+            <h2 className="text-2xl font-bold text-[var(--ink)] uppercase tracking-wide">
               Booking Placed!
             </h2>
-            <p className="text-stone-500 text-xs font-light leading-relaxed">
-              Thank you, <strong className="text-[#1C2A22]">{guestName}</strong>. Your reservation request is pending admin verification.
+            <p className="text-[var(--muted)] text-sm leading-relaxed">
+              Thank you, <strong className="text-[var(--ink)]">{guestName}</strong>. Your reservation request is pending admin verification.
             </p>
           </div>
 
-          <div className="p-4 bg-stone-50 border border-[#E5E2DA] rounded-lg text-left text-xs space-y-2.5">
+          <div className="p-6 bg-[var(--page-bg)]/50 border border-[var(--border)] rounded-[2rem] text-left text-xs space-y-2.5 text-[var(--muted)]">
             <div className="flex justify-between">
-              <span className="text-stone-500 font-light">Status:</span>
+              <span>Status:</span>
               <span className="text-amber-600 font-bold uppercase tracking-wider text-[10px]">Pending Verification</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-stone-500 font-light">Payment Option:</span>
-              <span className="text-brand-green font-bold uppercase tracking-wider text-[10px]">{paymentMethod}</span>
+              <span>Payment Option:</span>
+              <span className="text-[var(--accent)] font-bold uppercase tracking-wider text-[10px]">{paymentMethod}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-stone-500 font-light">Guest Phone:</span>
-              <span className="text-stone-850 font-bold">{phone}</span>
+              <span>Guest Phone:</span>
+              <span className="text-[var(--ink)] font-bold">{phone}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-stone-500 font-light">Room Type:</span>
-              <span className="text-stone-850 font-bold">{selectedRoom?.name}</span>
+              <span>Room Type:</span>
+              <span className="text-[var(--ink)] font-bold">{selectedRoom?.name}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-stone-500 font-light">Check-In:</span>
-              <span className="text-stone-850 font-bold">{dates.checkInDate} at {dates.checkInTime}</span>
+              <span>Check-In:</span>
+              <span className="text-[var(--ink)] font-bold">{dates.checkInDate} at {dates.checkInTime}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-stone-500 font-light">Check-Out:</span>
-              <span className="text-stone-850 font-bold">{dates.checkOutDate} at {dates.checkOutTime}</span>
+              <span>Check-Out:</span>
+              <span className="text-[var(--ink)] font-bold">{dates.checkOutDate} at {dates.checkOutTime}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-stone-500 font-light">Base Price:</span>
-              <span className="text-stone-850 font-bold">₹{basePrice}</span>
+              <span>Base Price:</span>
+              <span className="text-[var(--ink)] font-bold">₹{basePrice}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-stone-500 font-light">GST (18%):</span>
-              <span className="text-stone-850 font-bold">₹{gstAmount}</span>
+              <span>GST (18%):</span>
+              <span className="text-[var(--ink)] font-bold">₹{gstAmount}</span>
             </div>
-            <div className="flex justify-between border-t border-stone-200 pt-2 mt-1">
-              <span className="text-stone-500 font-bold">Total Price (incl. GST):</span>
-              <span className="text-[#1C2A22] font-serif font-bold">₹{totalPrice}</span>
+            <div className="flex justify-between border-t border-[var(--border)] pt-2 mt-1">
+              <span className="font-bold">Total Price (incl. GST):</span>
+              <span className="text-[var(--ink)] font-bold">₹{totalPrice}</span>
             </div>
           </div>
 
           <div className="pt-2 flex gap-4">
             <button
               onClick={() => setIsBooked(false)}
-              className="flex-1 py-3 rounded-lg border border-stone-200 text-xs uppercase tracking-wider text-stone-600 hover:bg-stone-50"
+              className="flex-1 py-3.5 rounded-full border border-[var(--border)] text-xs uppercase tracking-wider text-[var(--muted)] hover:bg-[var(--page-bg)] transition-all cursor-pointer font-semibold"
             >
               Book Another
             </button>
             <Link
               href="/"
-              className="flex-1 py-3 rounded-lg text-xs uppercase tracking-wider text-white bg-brand-green hover:bg-brand-green-hover flex items-center justify-center font-bold"
+              className="flex-1 py-3.5 rounded-full text-xs uppercase tracking-wider text-white bg-[var(--ink)] hover:bg-[var(--accent)] flex items-center justify-center font-semibold transition-all"
             >
               Go to Home
             </Link>
